@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{mathtools}
 \usepackage{luacode}
 
 \begin{luacode*}
@@ -40,7 +41,6 @@ local function print_puzzle (vh, lhs, rhs, tt)
       insert(roprd, tt.."{"..v.."}" )
    end
 
-   print("$$")
    if vh == "v" then
       print("\\begin{array}{c@{\\,}r}") 
       for i=1,#loprd do
@@ -52,11 +52,10 @@ local function print_puzzle (vh, lhs, rhs, tt)
          if i == 1 and #roprd > 1 then print("+") end
          print(" & "..roprd[i].." \\\\")
       end
-      print("\\end{array}") 
+      print("\\end{array}\\quad") 
    else
-      print(concat(loprd,"+").."="..concat(roprd,"+"))
+      print(concat(loprd,"+").."&="..concat(roprd,"+").." \\\\")
    end
-   print("$$")
 end
 
 function puzzle (vh, line)
@@ -67,7 +66,8 @@ function puzzle (vh, line)
    local eqn = split(line, "%s*=%s*")
    local lhs = split(eqn[LEFT], "%s*+%s*") -- left hand side array
    local rhs = split(eqn[RIGHT], "%s*+%s*") -- right hand side array
-   
+
+   if vh == "v" then print("$$") else print("\\begin{align*}") end   
    print_puzzle(vh, lhs, rhs, "\\tt") -- typewriter font for question
    local alpha = alphametics.new(lhs, rhs)
    local answers = alpha:solutions()
@@ -76,18 +76,27 @@ function puzzle (vh, line)
          print_puzzle(vh, ans[1], ans[2])
       end
    end
+   if vh == "v" then print("$$") else print("\\end{align*}") end   
    alpha:clear()
 end
 \end{luacode*}
 
-\newcommand{\alphametics}[2][v]{\luaexec{puzzle("#1","#2")}}
+\newcommand{\alphametics}[2][v]{%
+  \luaexec{puzzle(\luastring{#1},\luastring{#2})}}
+
 
 \begin{document}
 
-\alphametics{SEND+MORE = MONEY}
-\alphametics{COFFEE+COFFEE+COFFEE=THEOREM}
-\alphametics{NINETYNINENONILLIONNINETYNINESEXTILLIONNINETEEN+SIXTEEN+ELEVEN+NINE+SIX=NINETYNINENONILLIONNINETYNINESEXTILLIONSIXTYONE}
-\alphametics[h]{     VIOLIN + VIOLIN + VIOLA  = TRIO+          SONATA }
+\alphametics[v]{SEND+MORE = MONEY}
+\alphametics{SEND+A+TAD+MORE = MONEY}
+\alphametics{COFFEE + COFFEE + COFFEE = THEOREM}
+\alphametics[h]{ VIOLIN + VIOLIN + VIOLA = TRIO + SONATA }
+\alphametics{ZEROES+ONES=BINARY}
+\alphametics{FISH+N+CHIPS=SUPPER}
+\alphametics{SATURN+URANUS+NEPTUNE+PLUTO=PLANETS}
+\alphametics{EARTH+AIR+FIRE+WATER=NATURE}
+\alphametics{INTO+ONTO+CANON+INTACT+AMMONIA+OMISSION+DIACRITIC+STATISTICS+ASSOCIATION+ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION+CONTRADISTINCTION= MISADMINISTRATION}
+%\alphametics{NINETYNINENONILLIONNINETYNINESEXTILLIONNINETEEN+SIXTEEN+ELEVEN+NINE+SIX=NINETYNINENONILLIONNINETYNINESEXTILLIONSIXTYONE}
 
 \end{document}
 
