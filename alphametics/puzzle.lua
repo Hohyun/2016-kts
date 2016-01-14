@@ -39,19 +39,18 @@ local function print_puzzle (vh, lhs, rhs, tt)
    end
 
    if vh == "v" then
-      print("\\begin{array}{c@{\\,}r}") 
+      print("\\begin{array}{c@{\\,}r}")
       for i=1,#loprd do
          if i == #loprd then print("+") end
-         print(" & "..loprd[i].." \\\\")
+         print("&"..loprd[i].."\\\\")
       end
-      print("\\hline")
+      print("\\cmidrule(lr){1-2}")
       for i=1,#roprd do
-         if i == 1 and #roprd > 1 then print("+") end
-         print(" & "..roprd[i].." \\\\")
+         print("&"..roprd[i].."\\\\")
       end
       print("\\end{array}\\quad") 
    else
-      print(concat(loprd,"+").."&="..concat(roprd,"+").." \\\\")
+      print(concat(loprd,"+").."&="..concat(roprd,"+").."\\\\")
    end
 end
 
