@@ -1,3 +1,7 @@
+-- http://www-cs-faculty.stanford.edu/~uno/fasc2b.ps.gz
+-- The Art of Computer Programming Vol. 4A
+-- 7.2.1.2. Generating all permutations.
+
 local ffi = require "ffi"
 local gmp = require "luagmp"
 
