@@ -15,13 +15,11 @@
   local sformat = string.format
   local uint8_type = ffi.typeof("uint8_t")
   
-  -- is n square?
-  function square(n)
+  function not_square(n)
      local s = tonumber(ffi.new(uint8_type, sqrt(n)))
-     return s*s == n
+     return s*s ~= n
   end
 
-  -- periodic continued fraction
   function periodCF(n)
      local period = {}
      local a0 = tonumber(ffi.new(uint8_type, sqrt(n)))
@@ -43,9 +41,10 @@
 \newcommand*{\periodCF}[2]{%
   \begin{tabular}{rl}
     \luaexec{
-      for i=#1,#2 do
-         if not square(i) then 
-            tex.sprint("$\\sqrt{"..i.."}$&$"..periodCF(i).."$\\\\")
+      local sprint = tex.sprint
+      for j=#1,#2 do
+         if not_square(j) then 
+            sprint("$\\sqrt{"..j.."}$&$"..periodCF(j).."$\\\\")
          end
       end
     }%
