@@ -1,4 +1,4 @@
-local perm = require "perm"
+local ffi = require "ffi"
 local gmp = require "luagmp"
 
 local pairs = pairs
@@ -6,6 +6,7 @@ local ipairs = ipairs
 local concat = table.concat
 local insert = table.insert
 local gmatch = string.gmatch
+local ffi_new = ffi.new
 local gmp_new = gmp.new
 local gmp_cmp = gmp.cmp
 local gmp_add = gmp.add
@@ -14,7 +15,52 @@ local gmp_pow = gmp.pow
 local gmp_addmul = gmp.addmul
 local gmp_submul = gmp.submul
 local gmp_clear = gmp.clear
-local pct = perm.transitions
+
+
+-- Algorithm T (Plain change transitions)
+local function pct(n)
+   local n = n or 10 -- default decimal
+   if n < 2 then
+      return nil, "n should be >= 2."
+   end
+
+   -- Initialize.
+   local N = 1 -- n!
+   local m, d, t
+
+   for i=1,n do N = N * i end
+   d = ffi_new("unsigned int")
+   t = ffi_new("unsigned int[?]", N)
+   
+   m = 2
+   d = N / 2
+   t[d] = 1;
+
+   -- Loop on m.
+   while m ~= n do
+      local k = 0
+      m = m + 1
+      d = d / m
+      while k < N do
+         -- Hunt down.
+         k = k + d
+         for j=m-1,1,-1 do
+            t[k] = j
+            k = k + d
+         end
+         -- Offset.
+         t[k] = t[k] + 1
+         k = k + d
+         -- Hunt up.
+         for j=1,m-1,1 do
+            t[k] = j
+            k = k + d
+         end
+      end
+   end
+
+   return t, N-1
+end
 
 
 -- converts string to char array
