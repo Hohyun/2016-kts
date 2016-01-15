@@ -12,7 +12,7 @@ end
 local ptab = {}
 local a0 = floor(sqrt(n))
 local m, d = a0, n-a0*a0
-if d == 0 then return a0 end
+if d == 0 then return print(a0) end
 
 local m0, d0 = m, d
 repeat

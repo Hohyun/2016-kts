@@ -84,7 +84,8 @@
 \begin{frame}[fragile]
   \frametitle{\TeX\ 안의 Lua}
 \begin{verbatim}
-the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
+the standard approximation 
+$\pi = \directlua{tex.sprint(math.pi)}$
 \end{verbatim}
 \begin{center}
   the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
@@ -117,11 +118,24 @@ the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 \begin{frame}
-  \frametitle{연분수 순환 주기}
-  $$
-  \sqrt{13}=\ltcfrac[3;1,1,1,1,6,\ldots] =[3;\overline{1,1,1,1,6}]
-  $$
+  \frametitle{연분수 조판}
+  \begin{itemize}
+  \item 연분수 자동 조판 \url{http://kko.to/vdP6vr99m}
+  \item 연분수 조판 소개 \url{http://kko.to/vdPpkDab6}
+  \item 연분수 조판 2탄 \url{http://kko.to/vdPkUFe7u}
+  \item 연분수 조판 시리즈 마지막 \url{http://kko.to/vdPu5q8AE}
+  \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{연분수 순환 주기}
+  \[ \sqrt{13}=\ltcfrac[3;1,1,1,1,6,\ldots] =[3;\overline{1,1,1,1,6}] \]
+  \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}
+\end{frame}
+
+% pcf.lua 코드 시연
+% wolfram alpha와 비교
+% https://www.codecogs.com/latex/eqneditor.php
 
 %
 \subsection{복면산}
