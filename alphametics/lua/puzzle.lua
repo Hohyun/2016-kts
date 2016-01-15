@@ -1,32 +1,27 @@
 local alphametics = require "alphametics"
 
-local concat = table.concat
-local write = io.write
 local ipairs = ipairs
+local write = io.write
+local concat = table.concat
 
 local function print_puzzle (lhs, rhs)
    write(concat(lhs, " + "))
    write(" = ")
-   write(concat(rhs, " + "))
-   print()
+   write(concat(rhs, " + ").."\n")
 end
 
 local function puzzle (lhs, rhs)
    print_puzzle(lhs, rhs)
-   
    local alpha = alphametics.new(lhs, rhs)
-
    local answers = alpha:solutions()
    if answers then
       for _, ans in ipairs(answers) do
          print_puzzle(ans[1], ans[2])
       end
    end
-
    alpha:clear()
-   print()
+   write("\n")
 end
-
 
 -- samples
 puzzle({ "NUMBER", "NUMBER" }, { "PUZZLE" })
