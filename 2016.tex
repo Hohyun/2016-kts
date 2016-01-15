@@ -22,7 +22,7 @@
 
 %
 \title{루아텍 활용}
-\subtitle{루아 프로그래밍 예제 중심으로}
+\subtitle{루아 프로그래밍 중심으로}
 \author{남수진}
 \date{ 2016년 1월 30일 (토)\\
   2016 한국텍학회 학술대회 및 정기총회 \\
@@ -54,7 +54,11 @@
   \frametitle{Lua/Luajit}
   \begin{itemize}
   \item 루아 프로그래밍 언어 http://kko.to/vdQic7FLO
-  \item
+  \item 루아는 확장 언어와 스크립트 언어를 지향
+  \item 충분히 작기 때문에 많은 플랫폼에서 사용할 수 있다.
+  \item 적은 수의 기본 데이터형만을 지원
+  \item 배열, 집합, 해시 테이블, 리스트, 레코드와 같은 전형적인
+    데이터 구조는 모두 연관 배열과 유사한 루아의 테이블 자료형으로 구현
   \end{itemize}
 \end{frame}
 
@@ -64,7 +68,7 @@
 
 \begin{frame}
   \huge
-  \centering 루아텍 예제
+  \centering 루아텍 소개
 \end{frame}
 
 \begin{frame}[fragile]
@@ -73,7 +77,6 @@
   \item \texttt{luatexref-t.pdf}
   \item \texttt{lualatex-doc.pdf}
   \end{itemize}
-  \Large
 \begin{verbatim}
 \directlua {<lua code>}
 \directlua name {<name>} {<lua code>}
@@ -90,6 +93,10 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \begin{center}
   the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
 \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\texttt{\string\directlua}}
 \end{frame}
 
 \begin{frame}
@@ -130,7 +137,8 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \begin{frame}
   \frametitle{연분수 순환 주기}
   \[ \sqrt{13}=\ltcfrac[3;1,1,1,1,6,\ldots] =[3;\overline{1,1,1,1,6}] \]
-  \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}
+     {\footnotesize
+       \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}}
 \end{frame}
 
 % pcf.lua 코드 시연
@@ -142,7 +150,10 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 
 \begin{frame}
   \huge
-  \centering 복면산
+  \begin{center}
+    복면산\\
+    (Alphametics)
+  \end{center}
 \end{frame}
 
 \begin{frame}
@@ -151,21 +162,24 @@ $\pi = \directlua{tex.sprint(math.pi)}$
   \item A. H. Hunter
   \item H. E. Dudeney
   \end{itemize}
-      {\LARGE
-        $$
+      {\Huge
+        \[
+        \def\arraystretch{0.7}
         \begin{array}{c@{\,}r}
           & \texttt{SEND} \\
           + & \texttt{MORE} \\
           \cmidrule(lr){1-2}
           & \texttt{MONEY}
         \end{array}
-        $$
+        \]
       }
 \end{frame}
 
 \begin{frame}
   \frametitle{복면산: Alphametics}
-             {\huge \alphametics[v]{SEND+MORE = MONEY}}
+             {\Huge
+               \def\arraystretch{0.7}
+               \alphametics[v]{SEND+MORE = MONEY}}
 \end{frame}
 
 
