@@ -3,21 +3,25 @@
 
 \documentclass{beamer}
 
+\usetheme{metropolis} 
 \usefonttheme[onlymath]{serif}
+
 \usepackage[hangul]{kotex}
 \usepackage{mathtools,booktabs}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
 
-%\input cfrac
+\addtobeamertemplate{frametitle}{\vspace*{0mm}}{\vspace*{-5mm}}
+
+%
 \makeatletter
 \def\ltcfrac[#1;#2]{\cfr@c#1,#2,\end}
 \def\cfr@c#1,#2\end{\ifx#1\ldots\ddots\else#1\fi
   \ifx#2\end\else+{\strut1\hfill\over\displaystyle\cfr@c#2\end}\fi}
 \makeatother
 
+% for alphametics
 \directlua{dofile("puzzle.lua")}
-
 \newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
 
 %
@@ -28,7 +32,8 @@
   2016 한국텍학회 학술대회 및 정기총회 \\
   {\small 고려대학교 하나과학관 206호}}
 
-%
+
+%%
 \begin{document}
 
 % 제목
@@ -42,13 +47,8 @@
   \tableofcontents
 \end{frame}
 
-%
-\section{루아 프로그래밍 언어}
-
-\begin{frame}
-  \huge
-  \centering 루아 프로그래밍 언어
-\end{frame}
+%%
+\section{Lua 프로그래밍 언어}
 
 \begin{frame}
   \frametitle{Lua/Luajit}
@@ -58,18 +58,12 @@
   \item 충분히 작기 때문에 많은 플랫폼에서 사용할 수 있다.
   \item 적은 수의 기본 데이터형만을 지원
   \item 배열, 집합, 해시 테이블, 리스트, 레코드와 같은 전형적인
-    데이터 구조는 모두 연관 배열과 유사한 루아의 테이블 자료형으로 구현
+    데이터 구조는 루아의 테이블 자료형으로 구현
   \end{itemize}
 \end{frame}
 
-
-%
-\section{루아텍 소개}
-
-\begin{frame}
-  \huge
-  \centering 루아텍 소개
-\end{frame}
+%%
+\section{Lua\TeX}
 
 \begin{frame}[fragile]
   \frametitle{\TeX\ 안의 Lua}
@@ -79,8 +73,6 @@
   \end{itemize}
 \begin{verbatim}
 \directlua {<lua code>}
-\directlua name {<name>} {<lua code>}
-\directlua <number> {<lua code>}
 \end{verbatim}
 \end{frame}
 
@@ -107,22 +99,8 @@ $\pi = \directlua{tex.sprint(math.pi)}$
   \end{itemize}
 \end{frame}
 
-%
-\section{루아텍 예제}
-
-\begin{frame}
-  \huge
-  \centering 루아텍 예제
-\end{frame}
-
-
-%
-\subsection{연분수 순환 주기}
-
-\begin{frame}
-  \huge
-  \centering 연분수 순환 주기
-\end{frame}
+%%
+\section{연분수 순환 주기}
 
 \begin{frame}
   \frametitle{연분수 조판}
@@ -141,26 +119,21 @@ $\pi = \directlua{tex.sprint(math.pi)}$
        \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}}
 \end{frame}
 
+%
+\section{시연}
+
 % pcf.lua 코드 시연
 % wolfram alpha와 비교
 % https://www.codecogs.com/latex/eqneditor.php
 
-%
-\subsection{복면산}
+%%
+\section{복면산 (Alphametics)}
 
 \begin{frame}
-  \huge
-  \begin{center}
-    복면산\\
-    (Alphametics)
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{복면산: Alphametics}
+  \frametitle{복면산}
   \begin{itemize}
-  \item A. H. Hunter
-  \item H. E. Dudeney
+  \item Alphametics, 1955년 A. H. Hunter에 의해서 이름 붙여짐.
+  \item 1927년 H. E. Dudeney 의 명작
   \end{itemize}
       {\Huge
         \[
@@ -176,13 +149,60 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 \begin{frame}
-  \frametitle{복면산: Alphametics}
+  \frametitle{복면산}
              {\Huge
                \def\arraystretch{0.7}
                \alphametics[v]{SEND+MORE = MONEY}}
 \end{frame}
 
+\begin{frame}
+  \frametitle{복면산}
+               \[
+               \def\arraystretch{0.7}
+               \begin{array}{c@{\,}r}
+                 & \texttt{INTO} \\
+                 & \texttt{ONTO} \\
+                 & \texttt{CANON} \\
+                 & \texttt{INTACT} \\
+                 & \texttt{AMMONIA} \\
+                 & \texttt{OMISSION} \\
+                 & \texttt{DIACRITIC} \\
+                 & \texttt{STATISTICS} \\
+                 & \texttt{ASSOCIATION} \\
+                 & \texttt{ANTIMACASSAR} \\
+                 & \texttt{CONTORTIONIST} \\
+                 & \texttt{NONDISCRIMINATION} \\
+                 + & \texttt{CONTRADISTINCTION} \\
+                 \cmidrule(lr){1-2}
+                 & \texttt{MISADMINISTRATION}
+               \end{array}
+               \]
+\end{frame}
 
+%
+\begin{frame}
+  \frametitle{복면산}
+  \def\arraystretch{0.7}
+  \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA+OMISSION+DIACRITIC%
+    +STATISTICS+ASSOCIATION+ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
+    +CONTRADISTINCTION= MISADMINISTRATION}
+\end{frame}
+
+%
+\begin{frame}[fragile]
+  \frametitle{복면산}
+  \begin{verbatim}
+\alphametics{INTO+ONTO+CANON+INTACT+AMMONIA%
+  +OMISSION+DIACRITIC+STATISTICS+ASSOCIATION%
+  +ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
+  +CONTRADISTINCTION=MISADMINISTRATION}
+  \end{verbatim}
+\end{frame}
+
+%
+\section{시연}
+
+%
 \begin{frame}
   \huge
   \centering 감사합니다.
