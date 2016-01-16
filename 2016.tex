@@ -7,10 +7,12 @@
 \usefonttheme[onlymath]{serif}
 
 \usepackage[hangul]{kotex}
-\usepackage{mathtools,booktabs}
+\usepackage{mathtools}
+\usepackage{booktabs}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
 \usepackage{hologo}
+
 
 \def\luatex{\hologo{LuaTeX}}
 \def\logoko{\textsf{k}\kern-.0625em\textit{o}}
@@ -27,7 +29,8 @@
 
 % for alphametics
 \directlua{dofile("puzzle.lua")}
-\newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
+\newcommand{\alphametics}[2][v]{
+  \directlua{puzzle('#1','#2')}}
 
 %
 \title{루아텍 활용}
@@ -56,16 +59,16 @@
 %%
 \section{Lua 프로그래밍 언어}
 
+%
 \begin{frame}
   \frametitle{Lua}
   \begin{itemize}
   \item 루아 프로그래밍 언어 \url{http://www.lua.org}
-  \item 1993년에 브라질 리우 데자네이로, 교황청 대학교의
-    호베르투 이에루잘림스시의 의해서 개발
+  \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적으로 개발
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
   \item 기본 데이터형과 테이블
-  \item 단순하다. 배우기 쉽다. 강력하다.
+  \item 단순하다. 강력하다. 배우기 쉽다.
   \item 현재 버전 5.3.2
   \end{itemize}
 \end{frame}
@@ -73,12 +76,13 @@
 %%
 \section{\luatex}
 
+%
 \begin{frame}
   \frametitle{Lua\TeX\ Reference}
   \begin{itemize}
   \item Basic \TeX\ enhancements
   \item Lua general
-  \item Lua\TeX\ Lua Libraries
+  \item \luatex\ Lua Libraries
   \item Math
   \item Languages and characters, font and glyphs
   \item Font structure
@@ -86,8 +90,9 @@
   \end{itemize}
 \end{frame}
 
+%
 \begin{frame}
-  \frametitle{Lua\TeX\ 라이브러리}
+  \frametitle{\luatex\ 라이브러리}
   \vspace{-3mm}
   \begin{itemize}
   \item callback library
@@ -105,43 +110,46 @@
   \end{itemize}
 \end{frame}
 
+%
 \begin{frame}
-  \frametitle{Lua\TeX의 전형적인 사용례}
+  \frametitle{\luatex의 전형적인 사용례}
   \begin{itemize}
   \item \luatexko\\ \url{https://github.com/dohyunkim/luatexko}
   \item luamplib\\ \url{https://github.com/lualatex/luamplib}
   \end{itemize}
 \end{frame}
 
+%
 \begin{frame}[fragile]
   \frametitle{Lua\TeX\ 관련 필독}
   \begin{itemize}
+    \setlength\itemsep{1em}
   \item \texttt{texdoc luatexref-t.pdf}
   \item \texttt{texdoc lualatex-doc.pdf}
+  \item \texttt{texdoc luacode.pdf}
   \end{itemize}
 \end{frame}
 
+%
 \begin{frame}[fragile]
-  \[\texttt{\string\directlua\{<lua code>\}}\]
   \frametitle{\TeX\ 안의 Lua}
-  입력:
+  \[\texttt{\string\directlua\{<lua code>\}}\]
+  \begin{block}{입력}
 \begin{verbatim}
-  the standard approximation 
-  $\pi = \directlua{tex.sprint(math.pi)}$
+the standard approximation 
+$\pi = \directlua{tex.sprint(math.pi)}$
 \end{verbatim}
-결과:
-\begin{center}
+  \end{block}
+  \begin{block}{결과}
   the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
-\end{center}
+  \end{block}
 \end{frame}
 
-\begin{frame}
-  \frametitle{\texttt{\string\directlua}의 문제점}
-\end{frame}
-
+%
 \begin{frame}
   \frametitle{luacode 패키지}
   \begin{itemize}
+    \setlength\itemsep{1em}
   \item \texttt{\string\usepackage\{luacode\}}
   \item \texttt{\string\luaexec}
   \item \texttt{luacode(*)} 환경
@@ -149,11 +157,13 @@
 \end{frame}
 
 %%
-\section{연분수 순환 주기}
+\section{예제: 연분수 순환 주기}
 
+%
 \begin{frame}
   \frametitle{연분수 조판}
   \begin{itemize}
+    \setlength\itemsep{1em}
   \item 연분수 자동 조판 \url{http://kko.to/vdP6vr99m}
   \item 연분수 조판 소개 \url{http://kko.to/vdPpkDab6}
   \item 연분수 조판 2탄 \url{http://kko.to/vdPkUFe7u}
@@ -161,28 +171,27 @@
   \end{itemize}
 \end{frame}
 
+%
 \begin{frame}
   \frametitle{연분수 순환 주기}
   \[ \sqrt{13}=\ltcfrac[3;1,1,1,1,6,\ldots] =[3;\overline{1,1,1,1,6}] \]
-     {\footnotesize
+  \vspace{5mm}
+     {\scriptsize
        \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}}
 \end{frame}
 
 %
 \section{시연}
 
-% pcf.lua 코드 시연
-% wolfram alpha와 비교
-% https://www.codecogs.com/latex/eqneditor.php
-
 %%
-\section{복면산 (Alphametics)}
+\section{예제: 복면산 (Alphametics)}
 
+%
 \begin{frame}
   \frametitle{복면산}
   \begin{itemize}
   \item Alphametics, 1955년 A. H. Hunter에 의해서 이름 붙여짐.
-  \item 1927년 H. E. Dudeney 의 명작
+  \item 1927년 H. E. Dudeney
   \end{itemize}
   \vspace{5mm}
          {\Huge
@@ -198,6 +207,7 @@
          }
 \end{frame}
 
+%
 \begin{frame}
   \frametitle{복면산}
              {\Huge
@@ -205,6 +215,7 @@
                \alphametics[v]{SEND+MORE = MONEY}}
 \end{frame}
 
+%
 \begin{frame}
   \frametitle{복면산}
   \[
@@ -222,8 +233,8 @@
     & \texttt{ANTIMACASSAR} \\
     & \texttt{CONTORTIONIST} \\
     & \texttt{NONDISCRIMINATION} \\
-    + & \texttt{CONTRADISTINCTION} \\
-    \cmidrule(lr){1-2}
+  + & \texttt{CONTRADISTINCTION} \\
+      \cmidrule(lr){1-2}
     & \texttt{MISADMINISTRATION}
   \end{array}
   \]
