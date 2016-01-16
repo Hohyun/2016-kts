@@ -10,8 +10,13 @@
 \usepackage{mathtools,booktabs}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
+\usepackage{hologo}
 
-\addtobeamertemplate{frametitle}{\vspace*{0mm}}{\vspace*{-5mm}}
+\def\luatex{\hologo{LuaTeX}}
+\def\logoko{\textsf{k}\kern-.0625em\textit{o}}
+\def\luatexko{\luatex-\logoko}
+
+%\addtobeamertemplate{frametitle}{\vspace*{0mm}}{\vspace*{-5mm}}
 
 %
 \makeatletter
@@ -28,9 +33,10 @@
 \title{루아텍 활용}
 \subtitle{루아 프로그래밍 중심으로}
 \author{남수진}
-\date{ 2016년 1월 30일 (토)\\
+\date{\today}
+\institute{
   2016 한국텍학회 학술대회 및 정기총회 \\
-  {\small 고려대학교 하나과학관 206호}}
+  고려대학교 하나과학관 206호}
 
 
 %%
@@ -51,49 +57,92 @@
 \section{Lua 프로그래밍 언어}
 
 \begin{frame}
-  \frametitle{Lua/Luajit}
+  \frametitle{Lua}
   \begin{itemize}
-  \item 루아 프로그래밍 언어 http://kko.to/vdQic7FLO
-  \item 루아는 확장 언어와 스크립트 언어를 지향
-  \item 충분히 작기 때문에 많은 플랫폼에서 사용할 수 있다.
-  \item 적은 수의 기본 데이터형만을 지원
-  \item 배열, 집합, 해시 테이블, 리스트, 레코드와 같은 전형적인
-    데이터 구조는 루아의 테이블 자료형으로 구현
+  \item 루아 프로그래밍 언어 \url{http://www.lua.org}
+  \item 1993년에 브라질 리우 데자네이로, 교황청 대학교의
+    호베르투 이에루잘림스시의 의해서 개발
+  \item 기존 응용프로그램을 확장하는 목적으로 개발
+  \item 속도, 이식성, 확장성, 개발 편의성에 중점
+  \item 기본 데이터형과 테이블
+  \item 단순하다. 배우기 쉽다. 강력하다.
+  \item 현재 버전 5.3.2
   \end{itemize}
 \end{frame}
 
 %%
-\section{Lua\TeX}
+\section{\luatex}
 
-\begin{frame}[fragile]
-  \frametitle{\TeX\ 안의 Lua}
+\begin{frame}
+  \frametitle{Lua\TeX\ Reference}
   \begin{itemize}
-  \item \texttt{luatexref-t.pdf}
-  \item \texttt{lualatex-doc.pdf}
+  \item Basic \TeX\ enhancements
+  \item Lua general
+  \item Lua\TeX\ Lua Libraries
+  \item Math
+  \item Languages and characters, font and glyphs
+  \item Font structure
+  \item Nodes
   \end{itemize}
-\begin{verbatim}
-\directlua {<lua code>}
-\end{verbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lua\TeX\ 라이브러리}
+  \vspace{-3mm}
+  \begin{itemize}
+  \item callback library
+  \item epdf library
+  \item font library, fontloader library
+  \item img library
+  \item kpse library
+  \item lang library
+  \item lua library
+  \item mplib library
+  \item node library
+  \item pdf library, pdfscanner library
+  \item status library
+  \item tex library, texio library, token library
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lua\TeX의 전형적인 사용례}
+  \begin{itemize}
+  \item \luatexko\\ \url{https://github.com/dohyunkim/luatexko}
+  \item luamplib\\ \url{https://github.com/lualatex/luamplib}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Lua\TeX\ 관련 필독}
+  \begin{itemize}
+  \item \texttt{texdoc luatexref-t.pdf}
+  \item \texttt{texdoc lualatex-doc.pdf}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \[\texttt{\string\directlua\{<lua code>\}}\]
   \frametitle{\TeX\ 안의 Lua}
+  입력:
 \begin{verbatim}
 the standard approximation 
 $\pi = \directlua{tex.sprint(math.pi)}$
 \end{verbatim}
+결과:
 \begin{center}
   the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
 \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{\texttt{\string\directlua}}
+  \frametitle{\texttt{\string\directlua}의 문제점}
 \end{frame}
 
 \begin{frame}
   \frametitle{luacode 패키지}
   \begin{itemize}
+  \item \texttt{\string\usepackage\{luacode\}}
   \item \texttt{\string\luaexec}
   \item \texttt{luacode(*)} 환경
   \end{itemize}
@@ -135,6 +184,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
   \item Alphametics, 1955년 A. H. Hunter에 의해서 이름 붙여짐.
   \item 1927년 H. E. Dudeney 의 명작
   \end{itemize}
+  \vspace{5mm}
       {\Huge
         \[
         \def\arraystretch{0.7}
@@ -157,26 +207,26 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 
 \begin{frame}
   \frametitle{복면산}
-               \[
-               \def\arraystretch{0.7}
-               \begin{array}{c@{\,}r}
-                 & \texttt{INTO} \\
-                 & \texttt{ONTO} \\
-                 & \texttt{CANON} \\
-                 & \texttt{INTACT} \\
-                 & \texttt{AMMONIA} \\
-                 & \texttt{OMISSION} \\
-                 & \texttt{DIACRITIC} \\
-                 & \texttt{STATISTICS} \\
-                 & \texttt{ASSOCIATION} \\
-                 & \texttt{ANTIMACASSAR} \\
-                 & \texttt{CONTORTIONIST} \\
-                 & \texttt{NONDISCRIMINATION} \\
-                 + & \texttt{CONTRADISTINCTION} \\
-                 \cmidrule(lr){1-2}
-                 & \texttt{MISADMINISTRATION}
-               \end{array}
-               \]
+  \[
+  \def\arraystretch{0.7}
+  \begin{array}{c@{\,}r}
+    & \texttt{INTO} \\
+    & \texttt{ONTO} \\
+    & \texttt{CANON} \\
+    & \texttt{INTACT} \\
+    & \texttt{AMMONIA} \\
+    & \texttt{OMISSION} \\
+    & \texttt{DIACRITIC} \\
+    & \texttt{STATISTICS} \\
+    & \texttt{ASSOCIATION} \\
+    & \texttt{ANTIMACASSAR} \\
+    & \texttt{CONTORTIONIST} \\
+    & \texttt{NONDISCRIMINATION} \\
+    + & \texttt{CONTRADISTINCTION} \\
+    \cmidrule(lr){1-2}
+    & \texttt{MISADMINISTRATION}
+  \end{array}
+  \]
 \end{frame}
 
 %
@@ -191,12 +241,13 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 %
 \begin{frame}[fragile]
   \frametitle{복면산}
-  \begin{verbatim}
-\alphametics{INTO+ONTO+CANON+INTACT+AMMONIA%
-  +OMISSION+DIACRITIC+STATISTICS+ASSOCIATION%
-  +ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
-  +CONTRADISTINCTION=MISADMINISTRATION}
-  \end{verbatim}
+  \footnotesize
+\begin{verbatim}
+  \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA%
+    +OMISSION+DIACRITIC+STATISTICS+ASSOCIATION%
+    +ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
+    +CONTRADISTINCTION=MISADMINISTRATION}
+\end{verbatim}
 \end{frame}
 
 %

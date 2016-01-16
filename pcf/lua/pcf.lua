@@ -24,5 +24,3 @@ until m==m0 and d==d0
 
 print(format("\\sqrt{%d} = [%d;\\overline{%s}]", n, a0, concat(ptab,',')))
 
--- https://www.codecogs.com/latex/eqneditor.php
-
