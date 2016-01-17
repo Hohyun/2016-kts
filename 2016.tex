@@ -29,8 +29,7 @@
 
 % for alphametics
 \directlua{dofile("puzzle.lua")}
-\newcommand{\alphametics}[2][v]{
-  \directlua{puzzle('#1','#2')}}
+\newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
 
 %
 \title{루아텍 활용}
@@ -63,7 +62,7 @@
 \begin{frame}
   \frametitle{Lua}
   \begin{itemize}
-  \item 루아 프로그래밍 언어 \url{http://www.lua.org}
+  \item 루아 프로그래밍 언어, \url{http://www.lua.org}
   \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적으로 개발
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
@@ -78,35 +77,16 @@
 
 %
 \begin{frame}
-  \frametitle{Lua\TeX\ Reference}
+  \frametitle{\luatex}
   \begin{itemize}
-  \item Basic \TeX\ enhancements
-  \item Lua general
-  \item \luatex\ Lua Libraries
-  \item Math
-  \item Languages and characters, font and glyphs
-  \item Font structure
-  \item Nodes
-  \end{itemize}
-\end{frame}
-
-%
-\begin{frame}
-  \frametitle{\luatex\ 라이브러리}
-  \vspace{-3mm}
-  \begin{itemize}
-  \item callback library
-  \item epdf library
-  \item font library, fontloader library
-  \item img library
-  \item kpse library
-  \item lang library
-  \item lua library
-  \item mplib library
-  \item node library
-  \item pdf library, pdfscanner library
-  \item status library
-  \item tex library, texio library, token library
+  \item \luatex 은 Lua 언어를 내장한 \hologo{pdfTeX}의 확장판이다.
+  \item \TeX\ 고유의 기능을 유지하고, 루아를 통하여 \TeX\ 내부의 깊은 부분도
+    건드릴 수 있다.
+  \item 다양한 루아 라이브러리를 제공
+  \item \TeX을 만드는데 사용된 \texttt{WEB} 이나 C 언어
+    보다 상대적으로 쉬운 스크립트 언어인 루아를 이용하여
+    \TeX\ 엔진까지 쉽게 건드릴 수 있다니!
+  \item mplib 과 같은 새로운 기능 추가
   \end{itemize}
 \end{frame}
 
@@ -120,8 +100,8 @@
 \end{frame}
 
 %
-\begin{frame}[fragile]
-  \frametitle{Lua\TeX\ 관련 필독}
+\begin{frame}
+  \frametitle{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
   \item \texttt{texdoc luatexref-t.pdf}
@@ -132,32 +112,29 @@
 
 %
 \begin{frame}[fragile]
-  \frametitle{\TeX\ 안의 Lua}
-  \[\texttt{\string\directlua\{<lua code>\}}\]
-  \begin{block}{입력}
-\begin{verbatim}
+  \frametitle{\luatex}
+  \begin{itemize}
+    \item \texttt{\string\directlua\{<lua code>\}}
+    \item \texttt{\string\usepackage\{luacode\}}
+      \begin{itemize}
+      \item \texttt{\string\luaexec}
+      \item \texttt{luacode(*)} 환경
+      \end{itemize}
+  \end{itemize}
+  입력:
+    \begin{verbatim}
 the standard approximation 
 $\pi = \directlua{tex.sprint(math.pi)}$
-\end{verbatim}
-  \end{block}
-  \begin{block}{결과}
-    the standard approximation $\pi = \directlua{tex.sprint(math.pi)}$
-  \end{block}
-\end{frame}
-
-%
-\begin{frame}
-  \frametitle{luacode 패키지}
-  \begin{itemize}
-    \setlength\itemsep{1em}
-  \item \texttt{\string\usepackage\{luacode\}}
-  \item \texttt{\string\luaexec}
-  \item \texttt{luacode(*)} 환경
-  \end{itemize}
+    \end{verbatim}
+    \vspace{-5mm}
+    결과:
+    
+    the standard approximation
+    $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %%
-\section{예제: 연분수 순환 주기}
+\section{연분수 순환 주기 구하기}
 
 %
 \begin{frame}
@@ -173,7 +150,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 
 %
 \begin{frame}
-  \frametitle{연분수 순환 주기}
+  \frametitle{연분수 순환 주기 (Periodic continued fraction)}
   \vspace{-5mm}
   \begin{align*}
     \sqrt{2}&=\ltcfrac[1;2,2,\ldots] =[1;\overline{2}] \\
@@ -185,49 +162,44 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\section{시연}
+\section*{시연}
 
 %%
-\section{예제: 복면산 (Alphametics)}
+\section{복면산 (Alphametics)}
 
 %
 \begin{frame}
   \frametitle{복면산}
-  %\begin{itemize}
-  %\item Alphametics, 1955년 A. H. Hunter에 의해서 이름 붙여짐.
-  %\item 1927년 H. E. Dudeney
-  %\end{itemize}
-  %\vspace{5mm}
-             {\LARGE
-               \[
-               \def\arraystretch{0.7}
-               \begin{array}{c@{\,}r}
-                 & \texttt{SEND} \\
-                 + & \texttt{MORE} \\
-                 \cmidrule(lr){1-2}
-                 & \texttt{MONEY}
-               \end{array}
-               \quad
-               \def\arraystretch{0.7}
-               \begin{array}{c@{\,}r}
-                 & \texttt{BATMAN} \\
-                 + & \texttt{GOTHAM} \\
-                 \cmidrule(lr){1-2}
-                 & \texttt{NIGHTS}
-               \end{array}
-               \quad
-               \begin{array}{c@{\,}r}
-                 & \texttt{ZEROS} \\
-                 + & \texttt{ONES} \\
-                 \cmidrule(lr){1-2}
-                 & \texttt{BINARY}
-               \end{array}
-               \]
-             }
-             \vspace{5mm}
-                    {\Large
-                      \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}=\texttt{TRIO}+\texttt{SONATA} \]
-                    }
+  {\LARGE
+  \[
+  \def\arraystretch{0.7}
+  \begin{array}{c@{\,}r}
+    & \texttt{SEND} \\
+    + & \texttt{MORE} \\
+    \cmidrule(lr){1-2}
+    & \texttt{MONEY}
+  \end{array}
+  \quad
+  \def\arraystretch{0.7}
+  \begin{array}{c@{\,}r}
+    & \texttt{BATMAN} \\
+    + & \texttt{GOTHAM} \\
+    \cmidrule(lr){1-2}
+    & \texttt{NIGHTS}
+  \end{array}
+  \quad
+  \begin{array}{c@{\,}r}
+    & \texttt{ZEROS} \\
+    + & \texttt{ONES} \\
+    \cmidrule(lr){1-2}
+    & \texttt{BINARY}
+  \end{array}
+  \]
+  }
+  \vspace{5mm}
+  {\Large
+    \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}=\texttt{TRIO}+\texttt{SONATA} \]
+  }
 \end{frame}
 
 %
@@ -267,17 +239,35 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 %
 \begin{frame}[fragile]
   \frametitle{복면산}
-  \footnotesize
+  \large
 \begin{verbatim}
-  \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA%
-    +OMISSION+DIACRITIC+STATISTICS+ASSOCIATION%
-    +ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
+  \alphametics{INTO+ONTO+CANON+INTACT%
+    +AMMONIA+OMISSION+DIACRITIC%
+    +STATISTICS+ASSOCIATION+ANTIMACASSAR%
+    +CONTORTIONIST+NONDISCRIMINATION%
     +CONTRADISTINCTION=MISADMINISTRATION}
 \end{verbatim}
 \end{frame}
 
 %
-\section{시연}
+\begin{frame}
+  \frametitle{복면산}
+  \large
+  \alphametics[h]{VIOLIN+VIOLIN+VIOLA=TRIO+SONATA}
+\end{frame}
+
+%
+\begin{frame}[fragile]
+  \frametitle{복면산}
+  \large
+\begin{verbatim}
+  \alphametics[h]{VIOLIN+VIOLIN+VIOLA%
+    =TRIO+SONATA}
+\end{verbatim}
+\end{frame}
+
+%
+\section*{시연}
 
 %
 \begin{frame}
