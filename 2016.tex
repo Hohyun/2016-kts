@@ -5,7 +5,6 @@
 
 \usetheme{metropolis} 
 \usefonttheme[onlymath]{serif}
-
 \usepackage[hangul]{kotex}
 \usepackage{mathtools}
 \usepackage{booktabs}
@@ -65,10 +64,30 @@
   \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적으로 개발
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
-  \item 기본 데이터형과 테이블
+  %\item 기본 데이터형과 테이블
   \item 단순하다. 강력하다. 배우기 쉽다.
   \item 현재 버전 5.3.2
   \end{itemize}
+\end{frame}
+
+%
+\begin{frame}[fragile]
+  \frametitle{Lua}
+  \small
+  \begin{verbatim}
+-- greatest common divisor  
+function gcd (m, n)
+   while m ~= n do
+      m, n = math.mod(n,m), m
+   end
+   return n
+end
+
+print(gcd(3, 5))    -- 1
+print(gcd(24, 36))  -- 12
+print(gcd(56, 63))  -- 7
+print(gcd(105, 70)) -- 35
+  \end{verbatim}
 \end{frame}
 
 %%
@@ -84,18 +103,30 @@
   \item 다양한 루아 라이브러리를 제공
   \item \TeX을 만드는데 사용된 \texttt{WEB} 이나 C 언어
     보다 상대적으로 쉬운 스크립트 언어인 루아를 이용하여
-    \TeX\ 엔진까지 쉽게 건드릴 수 있다니!
-  \item mplib 과 같은 새로운 기능 추가
+    \TeX\ 엔진까지 쉽게 건드릴 수 있다.
+  \item mplib 과 같은 새로운 기능 추가도 가능하다.
   \end{itemize}
 \end{frame}
 
 %
 \begin{frame}
-  \frametitle{\luatex의 전형적인 사용례}
+  \frametitle{\luatex 의 전형적인 사용례}
   \begin{itemize}
   \item \luatexko\\ \url{https://github.com/dohyunkim/luatexko}
   \item luamplib\\ \url{https://github.com/lualatex/luamplib}
   \end{itemize}
+\end{frame}
+
+%
+\begin{frame}
+  \frametitle{\luatex 의 무궁무진한 가능성}
+  Lua가 프로그래밍 언어라는 사실을 상기하면,
+  \TeX 만으로는 불가능했거나 어려웠던, 
+  \begin{itemize}
+  \item 데이타베이스와의 연동 
+  \item 네트웍 관련 프로그래밍
+  \end{itemize}
+  등 모든 프로그램적 요소들이 가능하다.
 \end{frame}
 
 %
@@ -150,14 +181,13 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 %
 \begin{frame}
   \frametitle{연분수 순환 주기 (Periodic continued fraction)}
+  \url{http://kko.to/viBhWcdig}
+
   \vspace{-5mm}
   \begin{align*}
     \sqrt{2}&=\ltcfrac[1;2,2,\ldots] =[1;\overline{2}] \\
     \sqrt{3}&=\ltcfrac[1;1,2,\ldots] =[1;\overline{1,2}]
   \end{align*}
-  \vspace{5mm}
-         {\scriptsize
-           \url{http://mathworld.wolfram.com/PeriodicContinuedFraction.html}}
 \end{frame}
 
 %
@@ -197,7 +227,8 @@ $\pi = \directlua{tex.sprint(math.pi)}$
   }
   \vspace{5mm}
   {\Large
-    \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}=\texttt{TRIO}+\texttt{SONATA} \]
+    \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}%
+    =\texttt{TRIO}+\texttt{SONATA} \]
   }
 \end{frame}
 
