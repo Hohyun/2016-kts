@@ -1,5 +1,5 @@
 
-\documentclass[12pt]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage{luacode}
 \usepackage[yyyymmdd]{datetime}
 
@@ -38,9 +38,11 @@
 
 %%% 
 \def\date{\today}
-\def\code{\luastring{USD}}
+\def\code{\luastring{EUR}}
 %%%
 \def\country#1{\luaexec{print(country(#1))}}
+
+\renewcommand{\arraystretch}{1.2}
 
 \begin{center}
   {\Large \country{\code, true} Foreign Exchange Refernce Rates}\\
@@ -48,13 +50,17 @@
   \date\\
   \bigskip
   \begin{tabular}{ l l r }
-    \textbf{\sffamily Currency} & & \textbf{\sffamily Spot}\\
+    \hline
+    \textbf{\sffamily ISO 4217 code} & \textbf{\sffamily Currency}
+    & \textbf{\sffamily Spot}\\
+    \hline
     \luaexec{
       local fx = fixer(\luastring{\date}, \code)
       for k, v in pairs(fx.rates) do
-         print(k.." & "..country(k).." & "..v.."\\\\")
+         print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")
       end
     }
+    \hline
   \end{tabular}
 \end{center}
 \end{document}
