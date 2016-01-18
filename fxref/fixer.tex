@@ -1,0 +1,60 @@
+
+\documentclass[12pt]{article}
+\usepackage{luacode}
+\usepackage[yyyymmdd]{datetime}
+
+\thispagestyle{empty}
+\renewcommand{\dateseparator}{-}
+
+\begin{luacode*}
+  local cjson = require "lunajson"
+  local http = require "socket.http"
+  local hrequest = http.request
+  local currency = require "currency"
+  
+  function fixer (date, base)
+     local date = date or "latest"
+     local base = base or "USD"
+     local r, c, h = hrequest("http://api.fixer.io/"..date.."?base="..base)
+     if not r or c ~= 200 then
+        return nil, c
+     end
+     return cjson.decode(r)
+  end
+
+  function country (a, nocur)
+     local nocur = nocur or false
+     local con = currency[a] or a
+     if nocur then
+        con = string.gsub(con, "(.+)%s%a+$", "%1")
+     end
+     return con
+  end
+\end{luacode*}
+
+
+\begin{document}
+
+\def\currency{\luastring{EUR}}
+\def\date{2002-01-17}
+
+\def\country#1{\luaexec{tex.sprint(country(#1))}}
+
+\begin{center}
+  {\Large \country{\currency, true} Foreign Exchange Refernce Rates}\\
+  \medskip
+  \date\\
+  \bigskip
+  \begin{tabular}{ l l r }
+    \textbf{\sffamily Currency} & & \textbf{\sffamily Spot}\\
+    \luaexec{
+      local tab = fixer(\luastring{\date}, \currency)
+      local sprint = tex.sprint
+      for k, v in pairs(tab.rates) do
+         sprint(k.." & "..country(k).." & "..v.."\\\\")
+      end
+    }
+  \end{tabular}
+\end{center}
+\end{document}
+
