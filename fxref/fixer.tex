@@ -1,53 +1,54 @@
+%
 
 \documentclass[12pt,a4paper]{article}
 \usepackage{luacode}
 \usepackage[yyyymmdd]{datetime}
 
-\thispagestyle{empty}
-\renewcommand{\dateseparator}{-}
-
 \begin{luacode*}
-  local cjson = require "lunajson"
+  local json = require "lunajson"
   local http = require "socket.http"
-  local hrequest = http.request
   local currency = require "currency"
-  local gsub = string.gsub
   print = tex.print
   
   function fixer (date, base)
+     local date = date or "latest"
      local base = base or "EUR"
-     local r, c, h = hrequest("http://api.fixer.io/"..date.."?base="..base)
+     local r, c, h = http.request("http://api.fixer.io/"..date.."?base="..base)
      if not r or c ~= 200 then
         return nil, c
      end
-     return cjson.decode(r)
+     return json.decode(r)
   end
 
   function country (a, nocur)
      local nocur = nocur or false
      local con = currency[a] or a
      if nocur then
-        con = gsub(con, "(.+)%s%a+$", "%1")
+        con = string.gsub(con, "(.+)%s%a+$", "%1")
      end
      return con
   end
 \end{luacode*}
 
 
+\renewcommand{\dateseparator}{-}
+\renewcommand{\arraystretch}{1.2}
+\newcommand\country[1]{\luaexec{print(country(#1))}}
+
+
 \begin{document}
 
-%%% 
-\def\date{\today}
-\def\code{\luastring{EUR}}
 %%%
-\def\country#1{\luaexec{print(country(#1))}}
+%% 이 부분을 원하는 대로 수정. 
+\newcommand\mydate{\today}
+\newcommand\code{\luastring{EUR}}
+%%%
 
-\renewcommand{\arraystretch}{1.2}
-
+\thispagestyle{empty}
 \begin{center}
   {\Large \country{\code, true} Foreign Exchange Refernce Rates}\\
   \medskip
-  \date\\
+  \mydate\\
   \bigskip
   \begin{tabular}{ l l r }
     \hline
@@ -55,7 +56,7 @@
     & \textbf{\sffamily Spot}\\
     \hline
     \luaexec{
-      local fx = fixer(\luastring{\date}, \code)
+      local fx = fixer(\luastring{\mydate}, \code)
       for k, v in pairs(fx.rates) do
          print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")
       end
@@ -63,5 +64,6 @@
     \hline
   \end{tabular}
 \end{center}
+
 \end{document}
 
