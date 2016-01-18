@@ -8,7 +8,7 @@
 \usepackage[hangul]{kotex}
 \usepackage{mathtools}
 \usepackage{booktabs}
-\usepackage{fancyvrb}
+%\usepackage{fancyvrb}
 \usepackage{hyperref}
 \usepackage{hologo}
 
@@ -20,7 +20,7 @@
 
 % continued fraction
 \makeatletter
-\def\ltcfrac[#1;#2]{\cfr@c#1,#2,\end}
+\def\ltcfrac[#1;#2]{\cfr@c#1,#2,\ldots,\end}
 \def\cfr@c#1,#2\end{\ifx#1\ldots\ddots\else#1\fi
   \ifx#2\end\else+{\strut1\hfill\over\displaystyle\cfr@c#2\end}\fi}
 \makeatother
@@ -105,6 +105,8 @@ print(gcd(105, 70)) -- 35
     보다 상대적으로 쉬운 스크립트 언어인 루아를 이용하여
     \TeX\ 엔진까지 쉽게 건드릴 수 있다.
   \item mplib 과 같은 새로운 기능 추가도 가능하다.
+  \item 현재 버전\\
+    {\small\texttt{Version beta-0.80.0 (TeX Live 2015) (rev 5238)}}
   \end{itemize}
 \end{frame}
 
@@ -134,9 +136,9 @@ print(gcd(105, 70)) -- 35
   \frametitle{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item \texttt{texdoc luatexref-t.pdf}
-  \item \texttt{texdoc lualatex-doc.pdf}
-  \item \texttt{texdoc luacode.pdf}
+  \item \texttt{texdoc luatexref-t.pdf}, 210쪽
+  \item \texttt{texdoc lualatex-doc.pdf}, 14쪽
+  \item \texttt{texdoc luacode.pdf}, 3쪽/10쪽
   \end{itemize}
 \end{frame}
 
@@ -147,6 +149,7 @@ print(gcd(105, 70)) -- 35
     \item \texttt{\string\directlua\{<lua code>\}}
     \item \texttt{\string\usepackage\{luacode\}}
       \begin{itemize}
+      \item \texttt{\string\luadirect}
       \item \texttt{\string\luaexec}
       \item \texttt{luacode(*)} 환경
       \end{itemize}
@@ -171,10 +174,10 @@ $\pi = \directlua{tex.sprint(math.pi)}$
   \frametitle{연분수 조판}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item 연분수 자동 조판 \url{http://kko.to/vdP6vr99m}
-  \item 연분수 조판 소개 \url{http://kko.to/vdPpkDab6}
-  \item 연분수 조판 2탄 \url{http://kko.to/vdPkUFe7u}
-  \item 연분수 조판 시리즈 마지막 \url{http://kko.to/vdPu5q8AE}
+  \item 연분수 자동 조판, \url{http://kko.to/vdP6vr99m}
+  \item 연분수 조판 소개, \url{http://kko.to/vdPpkDab6}
+  \item 연분수 조판 2탄, \url{http://kko.to/vdPkUFe7u}
+  \item 연분수 조판 시리즈 마지막, \url{http://kko.to/vdPu5q8AE}
   \end{itemize}
 \end{frame}
 
@@ -185,8 +188,8 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 
   \vspace{-5mm}
   \begin{align*}
-    \sqrt{2}&=\ltcfrac[1;2,2,\ldots] =[1;\overline{2}] \\
-    \sqrt{3}&=\ltcfrac[1;1,2,\ldots] =[1;\overline{1,2}]
+    \sqrt{2}&=\ltcfrac[1;2,2] =[1;\overline{2}] \\
+    \sqrt{3}&=\ltcfrac[1;1,2] =[1;\overline{1,2}]
   \end{align*}
 \end{frame}
 
@@ -269,30 +272,33 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 %
 \begin{frame}[fragile]
   \frametitle{복면산}
-  \large
+  \Large
 \begin{verbatim}
-  \alphametics{INTO+ONTO+CANON+INTACT%
-    +AMMONIA+OMISSION+DIACRITIC%
-    +STATISTICS+ASSOCIATION+ANTIMACASSAR%
-    +CONTORTIONIST+NONDISCRIMINATION%
-    +CONTRADISTINCTION=MISADMINISTRATION}
+  \alphametics{INTO+ONTO+CANON%
+    +INTACT+AMMONIA+OMISSION%
+    +DIACRITIC+STATISTICS%
+    +ASSOCIATION+ANTIMACASSAR%
+    +CONTORTIONIST%
+    +NONDISCRIMINATION%
+    +CONTRADISTINCTION%
+    =MISADMINISTRATION}
 \end{verbatim}
 \end{frame}
 
 %
 \begin{frame}
   \frametitle{복면산}
-  \large
+  \Large
   \alphametics[h]{VIOLIN+VIOLIN+VIOLA=TRIO+SONATA}
 \end{frame}
 
 %
 \begin{frame}[fragile]
   \frametitle{복면산}
-  \large
+  \Large
 \begin{verbatim}
-  \alphametics[h]{VIOLIN+VIOLIN+VIOLA%
-    =TRIO+SONATA}
+  \alphametics[h]{VIOLIN+VIOLIN%
+    +VIOLA=TRIO+SONATA}
 \end{verbatim}
 \end{frame}
 
@@ -301,15 +307,13 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 
 %
 \begin{frame}
-  \huge
-  \begin{center}
-    \textbf{¿Tienes alguna pregunta?}
-  \end{center}
+  \Huge
+  \centering \textbf{¿Tienes alguna pregunta?}
 \end{frame}
 
 %
 \begin{frame}
-  \huge
+  \Huge
   \centering \textbf{Gracias.}
 \end{frame}
 
