@@ -11,10 +11,11 @@
   local http = require "socket.http"
   local hrequest = http.request
   local currency = require "currency"
+  local gsub = string.gsub
+  print = tex.print
   
   function fixer (date, base)
-     local date = date or "latest"
-     local base = base or "USD"
+     local base = base or "EUR"
      local r, c, h = hrequest("http://api.fixer.io/"..date.."?base="..base)
      if not r or c ~= 200 then
         return nil, c
@@ -26,7 +27,7 @@
      local nocur = nocur or false
      local con = currency[a] or a
      if nocur then
-        con = string.gsub(con, "(.+)%s%a+$", "%1")
+        con = gsub(con, "(.+)%s%a+$", "%1")
      end
      return con
   end
@@ -35,23 +36,23 @@
 
 \begin{document}
 
-\def\currency{\luastring{EUR}}
-\def\date{2002-01-17}
-
-\def\country#1{\luaexec{tex.sprint(country(#1))}}
+%%% 
+\def\date{\today}
+\def\code{\luastring{USD}}
+%%%
+\def\country#1{\luaexec{print(country(#1))}}
 
 \begin{center}
-  {\Large \country{\currency, true} Foreign Exchange Refernce Rates}\\
+  {\Large \country{\code, true} Foreign Exchange Refernce Rates}\\
   \medskip
   \date\\
   \bigskip
   \begin{tabular}{ l l r }
     \textbf{\sffamily Currency} & & \textbf{\sffamily Spot}\\
     \luaexec{
-      local tab = fixer(\luastring{\date}, \currency)
-      local sprint = tex.sprint
-      for k, v in pairs(tab.rates) do
-         sprint(k.." & "..country(k).." & "..v.."\\\\")
+      local fx = fixer(\luastring{\date}, \code)
+      for k, v in pairs(fx.rates) do
+         print(k.." & "..country(k).." & "..v.."\\\\")
       end
     }
   \end{tabular}
