@@ -14,6 +14,7 @@
 
 
 \def\luatex{\hologo{LuaTeX}}
+\def\lualatex{\hologo{LuaLaTeX}}
 \def\logoko{\textsf{k}\kern-.0625em\textit{o}}
 \def\luatexko{\luatex-\logoko}
 
@@ -136,9 +137,10 @@ print(gcd(105, 70)) -- 35
   \frametitle{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item \texttt{texdoc luatexref-t.pdf}, 210쪽
-  \item \texttt{texdoc lualatex-doc.pdf}, 14쪽
-  \item \texttt{texdoc luacode.pdf}, 3쪽/10쪽
+  \item \luatex\ Reference, \texttt{texdoc luatexref-t.pdf}
+  \item A guide to \lualatex, \texttt{texdoc lualatex-doc.pdf}
+  \item The \texttt{luacode} package, \texttt{texdoc luacode.pdf}
+  \item \luatexko\ 간단 메뉴얼, \texttt{texdoc luatexko-doc.pdf}
   \end{itemize}
 \end{frame}
 
@@ -154,14 +156,14 @@ print(gcd(105, 70)) -- 35
       \item \texttt{luacode(*)} 환경
       \end{itemize}
   \end{itemize}
-  입력:
+  입력:\\
+  \vspace{-3mm}
     \begin{verbatim}
 the standard approximation 
 $\pi = \directlua{tex.sprint(math.pi)}$
     \end{verbatim}
     \vspace{-5mm}
-    결과:
-    
+    결과:\\    
     the standard approximation
     $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
