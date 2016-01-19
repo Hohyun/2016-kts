@@ -19,7 +19,7 @@ return {
    AUD = "Australian dollar",
    BRL = "Brazilian real",
    CAD = "Canadian dollar",
-   CNY = "Chinese yuan", -- "Chinese yuan renminbi",
+   CNY = "Chinese yuan",
    HKD = "Hong Kong dollar",
    IDR = "Indonesian rupiah",
    ILS = "Israeli shekel",
