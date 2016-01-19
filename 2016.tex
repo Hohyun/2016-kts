@@ -162,43 +162,34 @@
 \end{frame}
 
 %%
-\section{복면산 (Alphametics)}
+\section{복면산 (覆面算; Alphametics)}
 
 \newcolumntype{R}{>{\tt}r}
 
+\newcommand{\tal}[3]{%
+    \begin{array}{c@{\,}R}
+    & #1 \\
+    + & #2 \\
+    \cmidrule(lr){1-2}
+    & #3
+  \end{array}}
 %
-\begin{frame}{복면산}
-
-  {\LARGE
-    \[
-    \def\arraystretch{0.7}
-    \begin{array}{c@{\,}R}
-      & SEND \\
-      + & MORE \\
-      \cmidrule(lr){1-2}
-      & MONEY
-    \end{array}
-    \quad
-    \def\arraystretch{0.7}
-    \begin{array}{c@{\,}R}
-      & BATMAN \\
-      + & GOTHAM \\
-      \cmidrule(lr){1-2}
-      & NIGHTS
-    \end{array}
-    \quad
-    \begin{array}{c@{\,}R}
-      & ZEROS \\
-      + & ONES \\
-      \cmidrule(lr){1-2}
-      & BINARY
-    \end{array}
-    \]
-  }
-  
+\begin{frame}[fragile]{복면산}
+  \begin{itemize}
+  \item 문자를 이용하여 표현된 수식에서 각 문자가 나타내는 숫자를 알아내는 문제
+  \item 하나의 문자는 하나의 숫자를 나타내고, 첫 번째 자리의 숫자는 0이 아니다.
+  \end{itemize}
   {\Large
-    \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}%
-    =\texttt{TRIO}+\texttt{SONATA} \]
+  \[
+  \def\arraystretch{0.7}
+  \tal{SEND}{MORE}{MONEY}
+  \quad
+  \tal{BATMAN}{GOTHAM}{NIGHTS}
+  \quad
+  \tal{ZEROS}{ONES}{BINARY}
+  \]
+
+  \[ \verb!VIOLIN+VIOLIN+VIOLA=TRIO+SONATA! \]
   }
 \end{frame}
 
