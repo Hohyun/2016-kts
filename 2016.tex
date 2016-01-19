@@ -3,7 +3,8 @@
 
 \documentclass{beamer}
 
-\usetheme{metropolis} 
+\usetheme{metropolis}
+
 \usefonttheme[onlymath]{serif}
 \usepackage[hangul]{kotex}
 \usepackage{mathtools}
@@ -38,27 +39,23 @@
   2016 한국텍학회 학술대회 및 정기총회 \\
   고려대학교 하나과학관 206호}
 
-
 %%
 \begin{document}
 
 % 제목
-\begin{frame}
-  \titlepage
-\end{frame}
+\maketitle
 
 % 차례
-\begin{frame}[t]
-  \frametitle{차례}
-  \tableofcontents
+\begin{frame}{차례}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
 \end{frame}
 
 %%
 \section{Lua 프로그래밍 언어}
 
 %
-\begin{frame}
-  \frametitle{Lua}
+\begin{frame}{Lua}
   \begin{itemize}
   \item 루아 프로그래밍 언어, \url{http://www.lua.org}
   \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
@@ -70,8 +67,7 @@
 \end{frame}
 
 %
-\begin{frame}[fragile]
-  \frametitle{Lua}
+\begin{frame}[fragile]{Lua}
   \small
   \begin{verbatim}
 -- greatest common divisor  
@@ -93,8 +89,7 @@ print(gcd(105, 70)) -- 35
 \section{\luatex}
 
 %
-\begin{frame}
-  \frametitle{\luatex}
+\begin{frame}{\luatex}
   \begin{itemize}
   \item \luatex 은 Lua 언어를 내장한 \hologo{pdfTeX}의 확장판이다.
   \item \TeX\ 고유의 기능을 유지하고, 루아를 통하여 \TeX\ 내부의 깊은 부분도
@@ -110,8 +105,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{\luatex 의 전형적인 사용례}
+\begin{frame}{\luatex 의 전형적인 사용례}
   \begin{itemize}
   \item \luatexko\\ \url{https://github.com/dohyunkim/luatexko}
   \item luamplib\\ \url{https://github.com/lualatex/luamplib}
@@ -119,8 +113,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{\luatex 의 무궁무진한 가능성}
+\begin{frame}{\luatex 의 무궁무진한 가능성}
   Lua가 프로그래밍 언어라는 사실을 상기하면,
   \TeX 만으로는 불가능했거나 어려웠던, 
   \begin{itemize}
@@ -131,8 +124,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{\luatex\ 관련 필독}
+\begin{frame}{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
   \item \luatex\ Reference, \texttt{texdoc luatexref-t.pdf}
@@ -143,8 +135,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\begin{frame}[fragile]
-  \frametitle{\luatex}
+\begin{frame}[fragile]{\luatex}
   \begin{itemize}
     \item \texttt{\string\directlua\{<lua code>\}}
     \item \texttt{\string\usepackage\{luacode\}}
@@ -170,8 +161,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \section{외환 비율표 만들기}
 
 %
-\begin{frame}
-  \frametitle{\texttt{Fixer.io}}
+\begin{frame}{\texttt{Fixer.io}}
   \begin{itemize}
   \item \url{http://fixer.io}
   \item \url{http://api.fixer.io/latest}
@@ -188,8 +178,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \section{연분수 순환 주기 구하기}
 
 %
-\begin{frame}
-  \frametitle{연분수 조판}
+\begin{frame}{연분수 조판}
   \begin{itemize}
     \setlength\itemsep{1em}
   \item 연분수 자동 조판, \url{http://kko.to/vdP6vr99m}
@@ -200,8 +189,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{연분수 순환 주기 (Periodic continued fraction)}
+\begin{frame}{연분수 순환 주기 (Periodic continued fraction)}
   \url{http://kko.to/viBhWcdig}
 
   \vspace{-5mm}
@@ -212,7 +200,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\section*{시연}
+\plain{시연}
 
 %%
 \section{복면산 (Alphametics)}
@@ -254,8 +242,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{복면산}
+\begin{frame}{복면산}
   \[
   \def\arraystretch{0.7}
   \begin{array}{c@{\,}r}
@@ -279,8 +266,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{복면산}
+\begin{frame}{복면산}
   \def\arraystretch{0.7}
   \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA+OMISSION+DIACRITIC%
     +STATISTICS+ASSOCIATION+ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
@@ -288,8 +274,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\begin{frame}[fragile]
-  \frametitle{복면산}
+\begin{frame}[fragile]{복면산}
   \Large
 \begin{verbatim}
   \alphametics{INTO+ONTO+CANON%
@@ -304,15 +289,13 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\begin{frame}
-  \frametitle{복면산}
+\begin{frame}{복면산}
   \Large
   \alphametics[h]{VIOLIN+VIOLIN+VIOLA=TRIO+SONATA}
 \end{frame}
 
 %
-\begin{frame}[fragile]
-  \frametitle{복면산}
+\begin{frame}[fragile]{복면산}
   \Large
 \begin{verbatim}
   \alphametics[h]{VIOLIN+VIOLIN%
@@ -321,19 +304,13 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\section*{시연}
+\plain{시연}
 
 %
-\begin{frame}
-  \Huge
-  \centering \textbf{¿Tienes alguna pregunta?}
-\end{frame}
+\plain{\huge ¿Tienes alguna pregunta?}
 
 %
-\begin{frame}
-  \Huge
-  \centering \textbf{Gracias.}
-\end{frame}
+\plain{\Huge \textbf{Gracias.}}
 
 \end{document}
 

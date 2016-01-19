@@ -1,8 +1,9 @@
 %
 
-\documentclass[12pt,a4paper]{article}
+\documentclass[a4paper]{article}
 
 \usepackage{luacode}
+\usepackage{booktabs}
 \usepackage[yyyymmdd]{datetime}
 
 \begin{luacode*}
@@ -52,17 +53,17 @@
   \mydate\\
   \bigskip
   \begin{tabular}{ l l r }
-    \hline
+    \toprule
     \textbf{\sffamily ISO 4217 code} & \textbf{\sffamily Currency}
     & \textbf{\sffamily Spot}\\
-    \hline
+    \midrule
     \luaexec{
       local fx = fixer(\luastring{\mydate}, \code)
       for k, v in pairs(fx.rates) do
          print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")
       end
     }
-    \hline
+    \bottomrule
   \end{tabular}
 \end{center}
 
