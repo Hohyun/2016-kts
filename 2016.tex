@@ -10,6 +10,7 @@
 \usepackage{mathtools}
 \usepackage{booktabs}
 \usepackage{hologo}
+\usepackage{array}
 
 \hypersetup{pdfencoding=auto}
 
@@ -18,13 +19,6 @@
 \def\logoko{\textsf{k}\kern-.0625em\textit{o}}
 \def\luatexko{\luatex-\logoko}
 
-
-% continued fraction
-\makeatletter
-\def\ltcfrac[#1;#2]{\cfr@c#1,#2,\ldots,\end}
-\def\cfr@c#1,#2\end{\ifx#1\ldots\ddots\else#1\fi
-  \ifx#2\end\else+{\strut1\hfill\over\displaystyle\cfr@c#2\end}\fi}
-\makeatother
 
 % for alphametics
 \directlua{dofile("puzzle.lua")}
@@ -159,14 +153,10 @@ print(gcd(105, 70)) -- 35
 \section{외환 비율표 만들기}
 
 %
-\begin{frame}{\texttt{Fixer.io}}
-  \begin{itemize}
-  \item \url{http://fixer.io}
-  \item \url{http://api.fixer.io/latest}
-  \item \url{http://api.fixer.io/2015-01-30}
-  \item \url{http://api.fixer.io/latest?base=USD}
-  \item \url{http://api.fixer.io/2015-01-30?base=USD}
-  \end{itemize}
+\begin{frame}{JSON API for foreign exchange rates}
+  \begin{center}
+    \Large \url{http://fixer.io}
+  \end{center}
 \end{frame}
 
 %
@@ -186,14 +176,21 @@ print(gcd(105, 70)) -- 35
   \end{itemize}
 \end{frame}
 
+% continued fraction
+\makeatletter
+\def\ltcfrac[#1;#2]{\cfr@c#1,#2,\ldots,\end}
+\def\cfr@c#1,#2\end{\ifx#1\ldots\ddots\else#1\fi
+  \ifx#2\end\else+{\strut1\hfill\over\displaystyle\cfr@c#2\end}\fi}
+\makeatother
+
 %
 \begin{frame}{연분수 순환 주기 (Periodic continued fraction)}
   \url{http://kko.to/viBhWcdig}
 
   \vspace{-5mm}
   \begin{align*}
-    \sqrt{2}&=\ltcfrac[1;2,2] =[1;\overline{2}] \\
-    \sqrt{3}&=\ltcfrac[1;1,2] =[1;\overline{1,2}]
+    \sqrt{2}&=\ltcfrac[1;2,2]=[1;\overline{2}] \\
+    \sqrt{3}&=\ltcfrac[1;1,2]=[1;\overline{1,2}]
   \end{align*}
 \end{frame}
 
@@ -204,31 +201,32 @@ print(gcd(105, 70)) -- 35
 \section{복면산 (Alphametics)}
 
 %
+\newcolumntype{R}{>{\tt}r}
 \begin{frame}
   \frametitle{복면산}
   {\LARGE
   \[
   \def\arraystretch{0.7}
-  \begin{array}{c@{\,}r}
-    & \texttt{SEND} \\
-    + & \texttt{MORE} \\
+  \begin{array}{c@{\,}R}
+    & SEND \\
+    + & MORE \\
     \cmidrule(lr){1-2}
-    & \texttt{MONEY}
+    & MONEY
   \end{array}
   \quad
   \def\arraystretch{0.7}
-  \begin{array}{c@{\,}r}
-    & \texttt{BATMAN} \\
-    + & \texttt{GOTHAM} \\
+  \begin{array}{c@{\,}R}
+    & BATMAN \\
+    + & GOTHAM \\
     \cmidrule(lr){1-2}
-    & \texttt{NIGHTS}
+    & NIGHTS
   \end{array}
   \quad
-  \begin{array}{c@{\,}r}
-    & \texttt{ZEROS} \\
-    + & \texttt{ONES} \\
+  \begin{array}{c@{\,}R}
+    & ZEROS \\
+    + & ONES \\
     \cmidrule(lr){1-2}
-    & \texttt{BINARY}
+    & BINARY
   \end{array}
   \]
   }
@@ -243,22 +241,22 @@ print(gcd(105, 70)) -- 35
 \begin{frame}{복면산}
   \[
   \def\arraystretch{0.7}
-  \begin{array}{c@{\,}r}
-    & \texttt{INTO} \\
-    & \texttt{ONTO} \\
-    & \texttt{CANON} \\
-    & \texttt{INTACT} \\
-    & \texttt{AMMONIA} \\
-    & \texttt{OMISSION} \\
-    & \texttt{DIACRITIC} \\
-    & \texttt{STATISTICS} \\
-    & \texttt{ASSOCIATION} \\
-    & \texttt{ANTIMACASSAR} \\
-    & \texttt{CONTORTIONIST} \\
-    & \texttt{NONDISCRIMINATION} \\
-    + & \texttt{CONTRADISTINCTION} \\
+  \begin{array}{c@{\,}R}
+    & INTO \\
+    & ONTO \\
+    & CANON \\
+    & INTACT \\
+    & AMMONIA \\
+    & OMISSION \\
+    & DIACRITIC \\
+    & STATISTICS \\
+    & ASSOCIATION \\
+    & ANTIMACASSAR \\
+    & CONTORTIONIST \\
+    & NONDISCRIMINATION \\
+    + & CONTRADISTINCTION \\
     \cmidrule(lr){1-2}
-    & \texttt{MISADMINISTRATION}
+    & MISADMINISTRATION
   \end{array}
   \]
 \end{frame}
