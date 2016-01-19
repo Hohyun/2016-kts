@@ -11,13 +11,12 @@
 \usepackage{booktabs}
 \usepackage{hologo}
 \usepackage{array}
+\usepackage{fancyvrb}
 
 \hypersetup{pdfencoding=auto}
 
-\def\luatex{\hologo{LuaTeX}}
-\def\lualatex{\hologo{LuaLaTeX}}
-\def\logoko{\textsf{k}\kern-.0625em\textit{o}}
-\def\luatexko{\luatex-\logoko}
+\newcommand{\luatex}{\hologo{LuaTeX}}
+\newcommand{\luatexko}{\luatex-\textsf{k}\kern-.0625em\textit{o}}
 
 % title
 \title{루아텍 활용}
@@ -47,10 +46,10 @@
   \begin{itemize}
   \item \alert{루아 프로그래밍 언어}, \url{http://www.lua.org}
   \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
-  \item 기존 응용프로그램을 확장하는 목적으로 개발
+  \item \alert{기존 응용프로그램을 확장하는 목적으로 개발}
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
-  \item 단순하다. 강력하다. 배우기 쉽다.
-  \item 현재 버전 5.3.2
+  \item 단순하다. 가볍다. 강력하다.
+  \item 현재 버전 5.3
   \end{itemize}
 \end{frame}
 
@@ -82,7 +81,7 @@
 \begin{frame}{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item \alert{A guide to \lualatex}, \texttt{lualatex-doc.pdf}
+  \item \alert{A guide to \hologo{LuaLaTeX}}, \texttt{lualatex-doc.pdf}
   \item \alert{The {\small\texttt{luacode}} package}, \texttt{luacode.pdf}
   \item \alert{\luatexko\ 간단 메뉴얼}, \texttt{luatexko-doc.pdf}
   \end{itemize}
@@ -188,7 +187,6 @@
   \quad
   \tal{ZEROS}{ONES}{BINARY}
   \]
-
   \[ \verb!VIOLIN+VIOLIN+VIOLA=TRIO+SONATA! \]
   }
 \end{frame}
@@ -232,7 +230,7 @@
 %
 \begin{frame}[fragile]{복면산}
   \Large
-\begin{verbatim}
+  \begin{Verbatim}[baselinestretch=1]
   \alphametics{INTO+ONTO+CANON%
     +INTACT+AMMONIA+OMISSION%
     +DIACRITIC+STATISTICS%
@@ -241,7 +239,7 @@
     +NONDISCRIMINATION%
     +CONTRADISTINCTION%
     =MISADMINISTRATION}
-\end{verbatim}
+\end{Verbatim}
 \end{frame}
 
 %
