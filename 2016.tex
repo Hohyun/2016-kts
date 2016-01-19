@@ -54,25 +54,6 @@
   \end{itemize}
 \end{frame}
 
-%
-\begin{frame}[fragile]{Lua}
-  \small
-  \begin{verbatim}
--- greatest common divisor  
-function gcd (m, n)
-   while m ~= n do
-      m, n = math.mod(n,m), m
-   end
-   return n
-end
-
-print(gcd(3, 5))    -- 1
-print(gcd(24, 36))  -- 12
-print(gcd(56, 63))  -- 7
-print(gcd(105, 70)) -- 35
-  \end{verbatim}
-\end{frame}
-
 %%
 \section{\luatex}
 
@@ -80,15 +61,12 @@ print(gcd(105, 70)) -- 35
 \begin{frame}{\luatex}
   \begin{itemize}
   \item \luatex 은 Lua 언어를 내장한 \hologo{pdfTeX}의 확장판이다.
-  \item \TeX\ 고유의 기능을 유지하고, 루아를 통하여 \TeX\ 내부의 깊은 부분도
+  \item \TeX\ 고유의 기능을 유지하고, 루아를 통하여 \TeX\ 내부의 깊은 부분, 엔진도
     건드릴 수 있다.
-  \item 다양한 루아 라이브러리를 제공
-  \item \TeX을 만드는데 사용된 \texttt{WEB} 이나 C 언어
-    보다 상대적으로 쉬운 스크립트 언어인 루아를 이용하여
-    \TeX\ 엔진까지 쉽게 건드릴 수 있다.
-  \item mplib 과 같은 새로운 기능 추가도 가능하다.
-  \item 현재 버전\\
-    {\small\texttt{Version beta-0.80.0 (TeX Live 2015) (rev 5238)}}
+  \item 다양한 루아 라이브러리를 제공\\
+    \alert{\luatex\ Reference}, \texttt{luatexref-t.pdf}
+  \item \texttt{mplib} 같은 새로운 기능도 추가.
+  \item 현재 버전 {\small\texttt{beta-0.80.0 (TeX Live 2015) (rev 5238)}}
   \end{itemize}
 \end{frame}
 
@@ -101,23 +79,11 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\begin{frame}{\luatex 의 무궁무진한 가능성}
-  Lua가 프로그래밍 언어라는 사실을 상기하면,
-  \TeX 만으로는 불가능했거나 어려웠던, 
-  \begin{itemize}
-  \item 데이타베이스와의 연동 
-  \item 네트웍 관련 프로그래밍
-  \end{itemize}
-  등 모든 프로그램적 요소들이 가능하다.
-\end{frame}
-
-%
 \begin{frame}{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item \alert{\luatex\ Reference}, \texttt{luatexref-t.pdf}
   \item \alert{A guide to \lualatex}, \texttt{lualatex-doc.pdf}
-  \item \alert{The \texttt{luacode} package}, \texttt{luacode.pdf}
+  \item \alert{The {\small\texttt{luacode}} package}, \texttt{luacode.pdf}
   \item \alert{\luatexko\ 간단 메뉴얼}, \texttt{luatexko-doc.pdf}
   \end{itemize}
 \end{frame}
@@ -125,13 +91,13 @@ print(gcd(105, 70)) -- 35
 %
 \begin{frame}[fragile]{\luatex}
   \begin{itemize}
-    \item \verb+\directlua{<lua code>}+
-    \item \verb+\usepackage{luacode}+
-      \begin{itemize}
-      \item \verb+\luadirect+
-      \item \verb+\luaexec+
-      \item \texttt{luacode(*)} 환경
-      \end{itemize}
+  \item \verb+\directlua{<lua code>}+
+  \item \verb+\usepackage{luacode}+
+    \begin{itemize}
+    \item \verb+\luadirect+
+    \item \verb+\luaexec+
+    \item \texttt{luacode(*)} 환경
+    \end{itemize}
   \end{itemize}
   \metroset{block=fill}
   \begin{exampleblock}{입력}
@@ -144,6 +110,18 @@ print(gcd(105, 70)) -- 35
   \end{exampleblock}
 \end{frame}
 
+%
+\begin{frame}{\luatex 의 무궁무진한 가능성}
+  Lua가 프로그래밍 언어라는 사실을 상기하면,
+  \TeX 만으로는 불가능했거나 어려웠던, 
+  \begin{itemize}
+  \item 데이타베이스와의 연동 
+  \item 네트웍 관련 프로그래밍
+  \item 복잡한 수학 계산
+  \end{itemize}
+  등 모든 컴퓨터 프로그래밍이 필요한 모든 기능 구현이 가능하다.
+\end{frame}
+
 %%
 \section{외환 비율표 만들기}
 
@@ -154,16 +132,12 @@ print(gcd(105, 70)) -- 35
   \end{center}
 \end{frame}
 
-%
-\plain{\huge 시연}
-
 %%
 \section{연분수 순환 주기 구하기}
 
 %
 \begin{frame}{연분수 조판}
   \begin{itemize}
-    \setlength\itemsep{1em}
   \item 연분수 자동 조판, \url{http://kko.to/vdP6vr99m}
   \item 연분수 조판 소개, \url{http://kko.to/vdPpkDab6}
   \item 연분수 조판 2탄, \url{http://kko.to/vdPkUFe7u}
@@ -187,42 +161,39 @@ print(gcd(105, 70)) -- 35
   \end{align*}
 \end{frame}
 
-%
-\plain{\huge 시연}
-
 %%
 \section{복면산 (Alphametics)}
 
 \newcolumntype{R}{>{\tt}r}
 
 %
-\begin{frame}
-  \frametitle{복면산}
+\begin{frame}{복면산}
+
   {\LARGE
-  \[
-  \def\arraystretch{0.7}
-  \begin{array}{c@{\,}R}
-    & SEND \\
-    + & MORE \\
-    \cmidrule(lr){1-2}
-    & MONEY
-  \end{array}
-  \quad
-  \def\arraystretch{0.7}
-  \begin{array}{c@{\,}R}
-    & BATMAN \\
-    + & GOTHAM \\
-    \cmidrule(lr){1-2}
-    & NIGHTS
-  \end{array}
-  \quad
-  \begin{array}{c@{\,}R}
-    & ZEROS \\
-    + & ONES \\
-    \cmidrule(lr){1-2}
-    & BINARY
-  \end{array}
-  \]
+    \[
+    \def\arraystretch{0.7}
+    \begin{array}{c@{\,}R}
+      & SEND \\
+      + & MORE \\
+      \cmidrule(lr){1-2}
+      & MONEY
+    \end{array}
+    \quad
+    \def\arraystretch{0.7}
+    \begin{array}{c@{\,}R}
+      & BATMAN \\
+      + & GOTHAM \\
+      \cmidrule(lr){1-2}
+      & NIGHTS
+    \end{array}
+    \quad
+    \begin{array}{c@{\,}R}
+      & ZEROS \\
+      + & ONES \\
+      \cmidrule(lr){1-2}
+      & BINARY
+    \end{array}
+    \]
   }
   
   {\Large
@@ -298,13 +269,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\plain{\huge 시연}
-
-%
 \plain{\huge ¿Tienes alguna pregunta?}
-
-%
-\plain{\Huge Gracias.}
 
 \end{document}
 
