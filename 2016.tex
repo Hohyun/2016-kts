@@ -19,11 +19,6 @@
 \def\logoko{\textsf{k}\kern-.0625em\textit{o}}
 \def\luatexko{\luatex-\logoko}
 
-
-% for alphametics
-\directlua{dofile("puzzle.lua")}
-\newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
-
 % title
 \title{루아텍 활용}
 \subtitle{루아 프로그래밍 중심으로}
@@ -50,7 +45,7 @@
 %
 \begin{frame}{Lua}
   \begin{itemize}
-  \item 루아 프로그래밍 언어, \url{http://www.lua.org}
+  \item \alert{루아 프로그래밍 언어}, \url{http://www.lua.org}
   \item 1993년, 호베르투 이에루잘림스시의 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적으로 개발
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
@@ -100,8 +95,8 @@ print(gcd(105, 70)) -- 35
 %
 \begin{frame}{\luatex 의 전형적인 사용례}
   \begin{itemize}
-  \item \luatexko\\ \url{https://github.com/dohyunkim/luatexko}
-  \item luamplib\\ \url{https://github.com/lualatex/luamplib}
+  \item \alert{\luatexko}\\ \url{https://github.com/dohyunkim/luatexko}
+  \item \alert{luamplib} package\\ \url{https://github.com/lualatex/luamplib}
   \end{itemize}
 \end{frame}
 
@@ -120,10 +115,10 @@ print(gcd(105, 70)) -- 35
 \begin{frame}{\luatex\ 관련 필독}
   \begin{itemize}
     \setlength\itemsep{1em}
-  \item \luatex\ Reference, \texttt{texdoc luatexref-t.pdf}
-  \item A guide to \lualatex, \texttt{texdoc lualatex-doc.pdf}
-  \item The \texttt{luacode} package, \texttt{texdoc luacode.pdf}
-  \item \luatexko\ 간단 메뉴얼, \texttt{texdoc luatexko-doc.pdf}
+  \item \alert{\luatex\ Reference}, \texttt{luatexref-t.pdf}
+  \item \alert{A guide to \lualatex}, \texttt{lualatex-doc.pdf}
+  \item \alert{The \texttt{luacode} package}, \texttt{luacode.pdf}
+  \item \alert{\luatexko\ 간단 메뉴얼}, \texttt{luatexko-doc.pdf}
   \end{itemize}
 \end{frame}
 
@@ -139,14 +134,14 @@ print(gcd(105, 70)) -- 35
       \end{itemize}
   \end{itemize}
   \metroset{block=fill}
-  \begin{block}{입력}
+  \begin{exampleblock}{입력}
     \verb+the standard approximation+\\
     \verb+$\pi=\directlua{tex.sprint(math.pi)}$+
-  \end{block}
-  \begin{block}{결과}
+  \end{exampleblock}
+  \begin{exampleblock}{결과}
     the standard approximation
     $\pi = \directlua{tex.sprint(math.pi)}$
-  \end{block}
+  \end{exampleblock}
 \end{frame}
 
 %%
@@ -160,7 +155,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\plain{시연}
+\plain{\huge 시연}
 
 %%
 \section{연분수 순환 주기 구하기}
@@ -186,8 +181,6 @@ print(gcd(105, 70)) -- 35
 %
 \begin{frame}{연분수 순환 주기 (Periodic continued fraction)}
   \url{http://kko.to/viBhWcdig}
-
-  \vspace{-5mm}
   \begin{align*}
     \sqrt{2}&=\ltcfrac[1;2,2]=[1;\overline{2}] \\
     \sqrt{3}&=\ltcfrac[1;1,2]=[1;\overline{1,2}]
@@ -195,13 +188,14 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\plain{시연}
+\plain{\huge 시연}
 
 %%
 \section{복면산 (Alphametics)}
 
-%
 \newcolumntype{R}{>{\tt}r}
+
+%
 \begin{frame}
   \frametitle{복면산}
   {\LARGE
@@ -230,7 +224,7 @@ print(gcd(105, 70)) -- 35
   \end{array}
   \]
   }
-  \vspace{5mm}
+  
   {\Large
     \[ \texttt{VIOLIN}+\texttt{VIOLIN}+\texttt{VIOLA}%
     =\texttt{TRIO}+\texttt{SONATA} \]
@@ -260,6 +254,10 @@ print(gcd(105, 70)) -- 35
   \end{array}
   \]
 \end{frame}
+
+% for alphametics
+\directlua{dofile("puzzle.lua")}
+\newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
 
 %
 \begin{frame}{복면산}
@@ -300,7 +298,7 @@ print(gcd(105, 70)) -- 35
 \end{frame}
 
 %
-\plain{시연}
+\plain{\huge 시연}
 
 %
 \plain{\huge ¿Tienes alguna pregunta?}
