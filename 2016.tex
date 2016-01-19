@@ -30,7 +30,7 @@
 \directlua{dofile("puzzle.lua")}
 \newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
 
-%
+% title
 \title{루아텍 활용}
 \subtitle{루아 프로그래밍 중심으로}
 \author{남수진}
@@ -42,7 +42,6 @@
 %%
 \begin{document}
 
-% 제목
 \maketitle
 
 % 차례
@@ -137,24 +136,23 @@ print(gcd(105, 70)) -- 35
 %
 \begin{frame}[fragile]{\luatex}
   \begin{itemize}
-    \item \texttt{\string\directlua\{<lua code>\}}
-    \item \texttt{\string\usepackage\{luacode\}}
+    \item \verb+\directlua{<lua code>}+
+    \item \verb+\usepackage{luacode}+
       \begin{itemize}
-      \item \texttt{\string\luadirect}
-      \item \texttt{\string\luaexec}
+      \item \verb+\luadirect+
+      \item \verb+\luaexec+
       \item \texttt{luacode(*)} 환경
       \end{itemize}
   \end{itemize}
-  입력:\\
-  \vspace{-3mm}
-    \begin{verbatim}
-the standard approximation 
-$\pi = \directlua{tex.sprint(math.pi)}$
-    \end{verbatim}
-    \vspace{-5mm}
-    결과:\\    
+  \metroset{block=fill}
+  \begin{block}{입력}
+    \verb+the standard approximation+\\
+    \verb+$\pi=\directlua{tex.sprint(math.pi)}$+
+  \end{block}
+  \begin{block}{결과}
     the standard approximation
     $\pi = \directlua{tex.sprint(math.pi)}$
+  \end{block}
 \end{frame}
 
 %%
@@ -172,7 +170,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \end{frame}
 
 %
-\section*{시연}
+\plain{시연}
 
 %%
 \section{연분수 순환 주기 구하기}
@@ -310,7 +308,7 @@ $\pi = \directlua{tex.sprint(math.pi)}$
 \plain{\huge ¿Tienes alguna pregunta?}
 
 %
-\plain{\Huge \textbf{Gracias.}}
+\plain{\Huge Gracias.}
 
 \end{document}
 
