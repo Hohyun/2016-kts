@@ -12,6 +12,10 @@
 \usepackage{hologo}
 \usepackage{array}
 \usepackage{fancyvrb}
+\usepackage{luacode}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.5} % to avoid warning
 
 \hypersetup{pdfencoding=auto}
 
@@ -33,6 +37,10 @@
 \maketitle
 
 % 차례
+\makeatletter
+\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip0.5em}{}{}
+\makeatother
+
 \begin{frame}{차례}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
@@ -132,6 +140,99 @@
 \end{frame}
 
 %%
+\section{삼각 함수표 만들기}
+
+%
+\begin{luacode*}
+  function trigtable ()
+     for t=0, 30, 3 do
+        x=math.rad(t)
+        tex.print(string.format(
+           '%2d$^{\\circ}$ & %1.5f & %1.5f & %1.5f '
+        .. '& %1.5f \\\\',
+            t, x, math.sin(x), math.cos(x),
+            math.tan(x)))
+     end
+  end
+\end{luacode*}
+
+\begin{frame}{삼각 함수표}
+  \medskip
+  \centering\small\divide\columnsep by 2
+  \begin{tabular}{rcccc}
+    \hline
+    & $x$ & $\sin(x)$ & $\cos(x)$ & $\tan(x)$ \\
+    \hline
+    \luadirect{trigtable()}
+    \hline
+  \end{tabular}
+\end{frame}
+
+%%
+\section{로렌즈 끌개}
+
+%
+\begin{luacode*}
+  -- Differential equation of the Lorenz attractor
+  function f(x,y,z)
+     local sigma = 3
+     local rho = 26.5
+     local beta = 1
+     return {sigma*(y-x), -x*z + rho*x - y, x*y - beta*z}
+  end
+
+  -- Code to write PGFplots data as coordinates
+  function print_LorAttrWithEulerMethod(h,npoints,option)
+     -- The usual starting point (x0,y0,z0)
+     local x0 = 0.0
+     local y0 = 1.0
+     local z0 = 0.0
+     -- we add a random number between -0.25 and 0.25
+     local x = x0 + (math.random()-0.5)/2
+     local y = y0 + (math.random()-0.5)/2
+     local z = z0 + (math.random()-0.5)/2
+     if option~=[[]] then
+        tex.sprint("\\addplot3["..option.."] coordinates{")
+     else
+        tex.sprint("\\addplot3 coordinates{")
+     end
+     -- we dismiss the first 100 points to go into the attractor
+     for i=1, 100 do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+     end
+     for i=1, npoints do
+        m = f(x,y,z)
+        x = x + h * m[1]
+        y = y + h * m[2]
+        z = z + h * m[3]
+        tex.sprint("("..x..","..y..","..z..")")
+     end
+     tex.sprint("}")
+  end
+\end{luacode*}
+
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}}
+
+\begin{frame}{로렌즈 끌개}
+  \centering
+  \pgfplotsset{width=.7\textwidth}
+  \begin{tikzpicture}
+    \begin{axis}
+      \addLUADEDplot[color=red,smooth]{0.02}{1000};
+      \addLUADEDplot[color=green,smooth]{0.02}{1000};
+      \addLUADEDplot[color=blue,smooth]{0.02}{1000};
+      \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
+      \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
+      \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
+    \end{axis}
+  \end{tikzpicture}
+\end{frame}
+
+%%
 \section{연분수 순환 주기 구하기}
 
 %
@@ -178,6 +279,7 @@
   \item 문자를 이용하여 표현된 수식에서 각 문자가 나타내는 숫자를 알아내는 문제
   \item 하나의 문자는 하나의 숫자를 나타내고, 첫 번째 자리의 숫자는 0이 아니다.
   \end{itemize}
+  \medskip
   {\Large
   \[
   \def\arraystretch{0.7}
@@ -256,16 +358,6 @@
   \alphametics[h]{VIOLIN+VIOLIN%
     +VIOLA=TRIO+SONATA}
 \end{verbatim}
-\end{frame}
-
-%%
-\section{Lorenz attractor}
-
-%
-\begin{frame}{Lorenz attractor}
-  \begin{center}
-    \Large \url{http://kko.to/vmnlfyTSg}
-  \end{center}
 \end{frame}
 
 %
