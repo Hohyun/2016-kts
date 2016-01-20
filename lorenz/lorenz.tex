@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\usepackage{url,microtype,upquote}
+\usepackage{luacode}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5} % to avoid warning
+
+\begin{document}
+
+The Lorenz attractor is a strange attractor that arises in a system of
+equations describing the $2$-dimensional flow of a fluid of uniform depth,
+with an imposed vertical temperature difference.
+In the early 1960s, Lorenz \cite{Lo} discovered the chaotic behavior of a
+simplified $3$-dimensional system of this problem,
+now known as the Lorenz equations:
+\[
+\left\{
+\begin{array}{l}
+  x'(t) = \sigma (y(t)-x(t)), \\
+  y'(t) = -x(t) z(t) + \rho x(t) - y(t), \\
+  z'(t) = x(t) y(t) - \beta z(t).
+\end{array}
+\right.
+\]
+The parameters $\sigma$, $\rho$, and $\beta$ are usually assumed to be positive. Lorenz used the values $\sigma=10$, $\rho=28$ and $\beta=8/3$. The system exhibits a chaotic behavior for these values; in fact, it became the first example of a chaotic system.
+A more complete description can be found in~\cite{Wiki-LS}.
+
+Figure~\ref{fig:LA} shows the numerical solution of the Lorenz equations calculated with
+$\sigma = 3$, $\rho = 26.5$ and $\beta = 1$.
+Six orbits starting at several initial points close to $(0,1,0)$ are plotted in different colors; all of them converge to the $3$-dimensional chaotic attractor known as the Lorenz attractor.
+
+\begin{figure}
+\begin{luacode*}
+  -- Differential equation of the Lorenz attractor
+  function f(x,y,z)
+  local sigma = 3
+  local rho = 26.5
+  local beta = 1
+  return {sigma*(y-x), -x*z + rho*x - y, x*y - beta*z}
+  end
+
+  -- Code to write PGFplots data as coordinates
+  function print_LorAttrWithEulerMethod(h,npoints,option)
+  -- The usual starting point (x0,y0,z0)
+  local x0 = 0.0
+  local y0 = 1.0
+  local z0 = 0.0
+  -- we add a random number between -0.25 and 0.25
+  local x = x0 + (math.random()-0.5)/2
+  local y = y0 + (math.random()-0.5)/2
+  local z = z0 + (math.random()-0.5)/2
+  if option~=[[]] then
+  tex.sprint("\\addplot3["..option.."] coordinates{")
+    else
+    tex.sprint("\\addplot3 coordinates{")
+      end
+      -- we dismiss the first 100 points to go into the attractor
+      for i=1, 100 do
+      m = f(x,y,z)
+      x = x + h * m[1]
+      y = y + h * m[2]
+      z = z + h * m[3]
+      end
+      for i=1, npoints do
+      m = f(x,y,z)
+      x = x + h * m[1]
+      y = y + h * m[2]
+      z = z + h * m[3]
+      tex.sprint("("..x..","..y..","..z..")")
+      end
+      tex.sprint("}")
+    end
+\end{luacode*}
+
+\newcommand\addLUADEDplot[3][]{%
+  \directlua{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}%
+}
+\centering
+\pgfplotsset{width=.9\hsize}
+\begin{tikzpicture}
+  \begin{axis}
+    % SYNTAX: Solution of the Lorenz system
+    % with step h=0.02 sampled at 1000 points.
+    \addLUADEDplot[color=red,smooth]{0.02}{1000};
+    \addLUADEDplot[color=green,smooth]{0.02}{1000};
+    \addLUADEDplot[color=blue,smooth]{0.02}{1000};
+    \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
+    \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
+    \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
+  \end{axis}
+\end{tikzpicture}
+\caption{The Lorentz attractor (six orbits starting at several initial points).\label{fig:LA}}
+\end{figure}
+
+\end{document}
