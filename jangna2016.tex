@@ -50,9 +50,9 @@
 \section{Lua 프로그래밍 언어}
 
 %
-\begin{frame}{Lua programming language}
+\begin{frame}{Lua 프로그래밍 언어}
   \begin{itemize}
-  \item Lua, 포루투칼어로 달
+  \item Lua, 포루투갈어로 달(moon)
   \item 1993년, 브라질 PUC-RIO 대학 Tecgraf 연구소 멤버들에 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적
     
@@ -77,29 +77,33 @@
   \item \luatex 은 Lua 언어를 내장한 \hologo{pdfTeX}의 확장판이다.
   \item \TeX\ 고유의 기능을 유지하고, 루아를 통하여 \TeX\ 내부의 깊은 부분, 엔진도
     건드릴 수 있다.
-  \item 다양한 루아 라이브러리를 제공\\
-    \alert{\luatex\ Reference}, \texttt{luatexref-t.pdf}
+  \item 다양한 루아 라이브러리를 제공,
+    \href{http://ftp.ktug.org/tex-archive/systems/doc/luatex/luatexref-t.pdf}%
+    {\luatex\ Reference}
   \item \texttt{mplib} 같은 새로운 기능도 추가.
   \item 현재 버전 {\small\texttt{beta-0.80.0 (TeX Live 2015) (rev 5238)}}
   \end{itemize}
 \end{frame}
 
 %
-\begin{frame}{\luatex 의 전형적인 사용례}
-  \begin{itemize}
-  \item \alert{\luatexko}\\ \url{https://github.com/dohyunkim/luatexko}
-  \item \alert{luamplib} package\\ \url{https://github.com/lualatex/luamplib}
-  \end{itemize}
-\end{frame}
-
-%
-\begin{frame}{\luatex\ 관련 필독}
-  \begin{itemize}
-    \setlength\itemsep{1em}
-  \item \alert{A guide to \hologo{LuaLaTeX}}, \texttt{lualatex-doc.pdf}
-  \item \alert{The {\small\texttt{luacode}} package}, \texttt{luacode.pdf}
-  \item \alert{\luatexko\ 간단 메뉴얼}, \texttt{luatexko-doc.pdf}
-  \end{itemize}
+\begin{frame}{\luatex}
+  \metroset{block=fill}
+  \begin{exampleblock}{\luatex 의 전형적인 사용례}
+    \begin{itemize}
+    \item \href{https://github.com/dohyunkim/luatexko}{\luatexko}
+    \item \href{https://github.com/lualatex/luamplib}{luamplib 패키지}
+    \end{itemize}
+  \end{exampleblock}
+  \begin{exampleblock}{\luatex\ 관련 필독서}
+    \begin{itemize}
+    \item \href{http://ftp.ktug.org/tex-archive/documentation/luatex/lualatex-doc/lualatex-doc.pdf}%
+      {A guide to \hologo{LuaLaTeX}}
+    \item \href{http://ftp.ktug.org/tex-archive/macros/luatex/latex/luacode/luacode.pdf}%
+      {The {\small\texttt{luacode}} package}
+    \item \href{http://ftp.ktug.org/tex-archive/macros/luatex/generic/luatexko/luatexko-doc.pdf}%
+      {\luatexko\ 간단 메뉴얼}
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 %
@@ -252,8 +256,7 @@
 \makeatother
 
 %
-\begin{frame}{연분수 순환 주기 (Periodic continued fraction)}
-  %\centering\url{http://kko.to/viBhWcdig}
+\begin{frame}{Periodic continued fraction}
   \centering\href{http://kko.to/viBhWcdig}{Wofram MathWorld: Periodic continued fraction}
   \begin{align*}
     \sqrt{2}&=\ltcfrac[1;2,2]=[1;\overline{2}] \\
@@ -294,36 +297,14 @@
   }
 \end{frame}
 
-%
-\begin{frame}{복면산}
-  \[
-  \def\arraystretch{0.7}
-  \begin{array}{c@{\,}R}
-    & INTO \\
-    & ONTO \\
-    & CANON \\
-    & INTACT \\
-    & AMMONIA \\
-    & OMISSION \\
-    & DIACRITIC \\
-    & STATISTICS \\
-    & ASSOCIATION \\
-    & ANTIMACASSAR \\
-    & CONTORTIONIST \\
-    & NONDISCRIMINATION \\
-    + & CONTRADISTINCTION \\
-    \cmidrule(lr){1-2}
-    & MISADMINISTRATION
-  \end{array}
-  \]
-\end{frame}
-
 % for alphametics
 \directlua{dofile("puzzle.lua")}
 \newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
 
 %
 \begin{frame}{복면산}
+  \vspace{-5mm}
+  \large
   \def\arraystretch{0.7}
   \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA+OMISSION+DIACRITIC%
     +STATISTICS+ASSOCIATION+ANTIMACASSAR+CONTORTIONIST+NONDISCRIMINATION%
