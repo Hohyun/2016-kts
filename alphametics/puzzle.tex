@@ -2,7 +2,7 @@
 
 \usepackage{mathtools,booktabs}
 
-\directlua{dofile("puzzle.lua")}
+\directlua{dofile(kpse.find_file("puzzle.lua"))}
 
 \newcommand{\alphametics}[2][v]{%
   \directlua{puzzle('#1','#2')}}
