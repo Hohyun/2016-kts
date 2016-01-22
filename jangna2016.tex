@@ -328,7 +328,7 @@ end{mplibcode}
 \end{frame}
 
 % for alphametics
-\luadirect{dofile(\luastring{puzzle.lua})}
+\luadirect{dofile(kpse.find_file(\luastring{puzzle.lua}))}
 \newcommand{\alphametics}[2][v]{%
   \luadirect{puzzle(\luastring{#1},\luastring{#2})}}
 
