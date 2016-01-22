@@ -4,8 +4,8 @@
 \documentclass{beamer}
 
 \usetheme{metropolis}
-
 \usefonttheme[onlymath]{serif}
+
 \usepackage[hangul]{luatexko}
 \usepackage{luamplib}
 \usepackage{mathtools}
@@ -258,7 +258,7 @@ end{mplibcode}
 \end{luacode*}
 
 \newcommand\addLUADEDplot[3][]{%
-  \directlua{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}}
+  \luadirect{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}}
 
 \begin{frame}{로렌즈 끌개}
   \centering
@@ -328,8 +328,9 @@ end{mplibcode}
 \end{frame}
 
 % for alphametics
-\directlua{dofile("puzzle.lua")}
-\newcommand{\alphametics}[2][v]{\directlua{puzzle('#1','#2')}}
+\luadirect{dofile(\luastring{puzzle.lua})}
+\newcommand{\alphametics}[2][v]{%
+  \luadirect{puzzle(\luastring{#1},\luastring{#2})}}
 
 %
 \begin{frame}{복면산}
