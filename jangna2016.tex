@@ -6,7 +6,8 @@
 \usetheme{metropolis}
 
 \usefonttheme[onlymath]{serif}
-\usepackage[hangul]{kotex}
+\usepackage[hangul]{luatexko}
+\usepackage{luamplib}
 \usepackage{mathtools}
 \usepackage{booktabs}
 \usepackage{hologo}
@@ -24,7 +25,7 @@
 
 % title
 \title{루아텍 활용}
-\subtitle{루아 프로그래밍 중심으로}
+\subtitle{프로그래밍과 조판의 콜라보}
 \author{남수진}
 \date{2016년 1월 30일}
 \institute{
@@ -52,19 +53,19 @@
 %
 \begin{frame}{Lua 프로그래밍 언어}
   \begin{itemize}
-  \item Lua, 포루투갈어로 달(moon)
+  \item \href{http://www.lua.org}{Lua}, 포루투갈어로 달(Moon)
   \item 1993년, 브라질 PUC-RIO 대학 Tecgraf 연구소 멤버들에 의해서 개발
   \item 기존 응용프로그램을 확장하는 목적
     
     \begin{quote}
       \small
       Lua was originally designed in 1993 as a language for
-      extending software applications to meet the increasing demand
+      \alert{extending software applications} to meet the increasing demand
       for customization at the time.
     \end{quote}
     
   \item 속도, 이식성, 확장성, 개발 편의성에 중점
-  \item 현재 버전 5.3
+  \item 현재 버전 5.3.2
   \end{itemize}
 \end{frame}
 
@@ -81,7 +82,7 @@
     \href{http://ftp.ktug.org/tex-archive/systems/doc/luatex/luatexref-t.pdf}%
     {\luatex\ Reference}
   \item \texttt{mplib} 같은 새로운 기능도 추가.
-  \item 현재 버전 {\small\texttt{beta-0.80.0 (TeX Live 2015) (rev 5238)}}
+  \item 현재 버전, {\texttt{\small beta-0.80.0 (TeX Live 2015) (rev 5238)}}
   \end{itemize}
 \end{frame}
 
@@ -137,11 +138,40 @@
   \item 네트웍 관련 프로그래밍
   \item 복잡한 수학 계산
   \end{itemize}
-  등 모든 컴퓨터 프로그래밍이 필요한 모든 기능 구현이 가능하다.
+  등 컴퓨터 프로그래밍을 동반한 조판이 가능하다.
 \end{frame}
 
 %%
-\section{외환 비율표 만들기}
+\section{luamplib}
+
+%
+\begin{frame}[fragile]{luamplib 패키지}
+  \begin{figure}
+    \footnotesize
+\begin{verbatim}
+\usepackage{luamplib}
+...
+\begin{mplibcode}
+  beginfig(1);
+  draw fullcircle scaled 2cm;
+  dotlabel.bot(btex \TeX etex, origin);
+  dotlabel.rt(btex 루아 etex, dir 45*1cm);
+  endfig;
+end{mplibcode}
+\end{verbatim}
+\begin{mplibcode}
+  beginfig(1);
+  draw btex \copy0 etex shifted (-\mpdim{\textwidth-3cm},-\mpdim{.5\ht0});
+  draw fullcircle scaled 2cm;
+  dotlabel.bot(btex\TeX etex, origin);
+  dotlabel.rt(btex 루아 etex, dir 45*1cm);
+  endfig;
+\end{mplibcode}
+  \end{figure}
+\end{frame}
+
+%%
+\section{오늘의 환율}
 
 %
 \begin{frame}{\texttt{Fixer.io}}
@@ -153,7 +183,7 @@
 \end{frame}
 
 %%
-\section{삼각 함수표 만들기}
+\section{삼각함수표}
 
 %
 \begin{luacode*}
@@ -246,7 +276,7 @@
 \end{frame}
 
 %%
-\section{연분수 순환 주기 구하기}
+\section{Periodic Continued Fraction}
 
 % continued fraction
 \makeatletter
@@ -303,7 +333,7 @@
 
 %
 \begin{frame}{복면산}
-  \vspace{-5mm}
+  \vspace{-4mm}
   \large
   \def\arraystretch{0.7}
   \alphametics{INTO+ONTO+CANON+INTACT+AMMONIA+OMISSION+DIACRITIC%
