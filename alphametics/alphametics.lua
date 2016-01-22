@@ -1,4 +1,4 @@
--- http://www-cs-faculty.stanford.edu/~uno/fasc2b.ps.gz
+-- http://www.cs.utsa.edu/~wagner/knuth/fasc2b.pdf
 -- The Art of Computer Programming Vol. 4A
 -- 7.2.1.2. Generating all permutations.
 
