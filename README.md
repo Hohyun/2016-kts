@@ -19,12 +19,14 @@ luajitlatex
 
 jangna2016.pdf
 --------------
-https://github.com/sjnam/luagmp.git의
+pdf 파일을 만들기 위해서는 https://github.com/sjnam/luagmp.git의
 
 * luagmp.lua
 * alphametics.lua
 
 파일이 필요하다.
+위의 두 파일을 컴파일하고자 하는 텍파일과 같은 디렉토리에 두거나 아래 명령으로
+나오는 디렉토리들 중 맘에 드는 곳에 두어도 된다.
 
 ```bash
 
