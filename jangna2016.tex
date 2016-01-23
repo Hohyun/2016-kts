@@ -4,7 +4,9 @@
 \documentclass{beamer}
 
 \usetheme{metropolis}
+%\metroset{main/titleformat=allcaps}
 \metroset{inner/sectionpage=none}
+\metroset{outer/progressbar=head}
 \metroset{color/block=fill}
 \usefonttheme[onlymath]{serif}
 
@@ -32,6 +34,7 @@
 \institute{
   2016 한국텍학회 학술대회 및 정기총회 \\
   고려대학교 하나과학관 B206호}
+%\titlegraphic{\hfill\includegraphics[height=2cm]{KTSmeta}}
 
 %%
 \begin{document}
@@ -141,35 +144,6 @@
   등 컴퓨터 프로그래밍을 동반한 조판이 가능하다.
 \end{frame}
 
-%%%
-%\section{luamplib}
-%
-%
-%\begin{frame}[fragile]{luamplib 패키지}
-%  \begin{figure}
-%    \footnotesize
-%\begin{verbatim}
-%\usepackage{luamplib}
-%...
-%\begin{mplibcode}
-%  beginfig(1);
-%  draw fullcircle scaled 2cm;
-%  dotlabel.bot(btex \TeX etex, origin);
-%  dotlabel.rt(btex 루아 etex, dir 45*1cm);
-%  endfig;
-%\end{mplibcode}
-%\end{verbatim}
-%\begin{mplibcode}
-%  beginfig(1);
-%  draw btex \copy0 etex shifted (-\mpdim{\textwidth-3cm},-\mpdim{.5\ht0});
-%  draw fullcircle scaled 2cm;
-%  dotlabel.bot(btex\TeX etex, origin);
-%  dotlabel.rt(btex 루아 etex, dir 45*1cm);
-%  endfig;
-%\end{mplibcode}
-%  \end{figure}
-%\end{frame}
-
 %%
 \section{예제}
 
@@ -206,7 +180,7 @@
   \centering\small\divide\columnsep by 2
   \begin{tabular}{rcccc}
     \hline
-    & $x$ & $\sin(x)$ & $\cos(x)$ & $\tan(x)$ \\
+    & $x$ & $\sin x$ & $\cos x$ & $\tan x$ \\
     \hline
     \luadirect{trigtable()}
     \hline
@@ -284,6 +258,11 @@
       z'(t) &= x(t) y(t) - \beta z(t).
     \end{align*}
   \end{minipage}
+
+  \begin{center}
+    \href{http://www.unirioja.es/cu/jvarona/downloads/%
+      numerical-methods-luatex.pdf}{Numerical methods with \hologo{LuaLaTeX}}
+  \end{center}
 \end{frame}
 
 %%
@@ -318,7 +297,7 @@
     & #3
   \end{array}}
 %
-\begin{frame}[fragile]{복면산}
+\begin{frame}[fragile]{복면산 (覆面算; Alphametics)}
   \begin{itemize}
   \item 문자를 이용하여 표현된 수식에서 각 문자가 나타내는 숫자를 알아내는 문제
   \item 하나의 문자는 하나의 숫자를 나타내고, 첫 번째 자리의 숫자는 0이 아니다.
@@ -331,7 +310,7 @@
   \quad
   \tal{BATMAN}{GOTHAM}{NIGHTS}
   \quad
-  \tal{ZEROS}{ONES}{BINARY}
+  \tal{ZEROES}{ONES}{BINARY}
   \]
   
   \[ \verb!VIOLIN+VIOLIN+VIOLA=TRIO+SONATA! \]
