@@ -19,7 +19,7 @@ luajitlatex
 
 jangna2016.pdf
 --------------
-pdf 파일을 만들기 위해서는 https://github.com/sjnam/luagmp.git 의
+pdf 파일을 만들기 위해서는 https://github.com/sjnam/luagmp 의
 
 * luagmp.lua
 * alphametics.lua
