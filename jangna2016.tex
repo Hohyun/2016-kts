@@ -129,7 +129,7 @@
 \end{frame}
 
 %
-\begin{frame}{\luatex 의 무궁무진한 가능성}
+\begin{frame}{\luatex}
   Lua가 프로그래밍 언어라는 사실을 상기하면,
   \TeX 만으로는 불가능했거나 어려웠던, 
   \begin{itemize}
@@ -140,34 +140,34 @@
   등 컴퓨터 프로그래밍을 동반한 조판이 가능하다.
 \end{frame}
 
-%%
-\section{luamplib}
-
+%%%
+%\section{luamplib}
 %
-\begin{frame}[fragile]{luamplib 패키지}
-  \begin{figure}
-    \footnotesize
-\begin{verbatim}
-\usepackage{luamplib}
-...
-\begin{mplibcode}
-  beginfig(1);
-  draw fullcircle scaled 2cm;
-  dotlabel.bot(btex \TeX etex, origin);
-  dotlabel.rt(btex 루아 etex, dir 45*1cm);
-  endfig;
-\end{mplibcode}
-\end{verbatim}
-\begin{mplibcode}
-  beginfig(1);
-  draw btex \copy0 etex shifted (-\mpdim{\textwidth-3cm},-\mpdim{.5\ht0});
-  draw fullcircle scaled 2cm;
-  dotlabel.bot(btex\TeX etex, origin);
-  dotlabel.rt(btex 루아 etex, dir 45*1cm);
-  endfig;
-\end{mplibcode}
-  \end{figure}
-\end{frame}
+%
+%\begin{frame}[fragile]{luamplib 패키지}
+%  \begin{figure}
+%    \footnotesize
+%\begin{verbatim}
+%\usepackage{luamplib}
+%...
+%\begin{mplibcode}
+%  beginfig(1);
+%  draw fullcircle scaled 2cm;
+%  dotlabel.bot(btex \TeX etex, origin);
+%  dotlabel.rt(btex 루아 etex, dir 45*1cm);
+%  endfig;
+%\end{mplibcode}
+%\end{verbatim}
+%\begin{mplibcode}
+%  beginfig(1);
+%  draw btex \copy0 etex shifted (-\mpdim{\textwidth-3cm},-\mpdim{.5\ht0});
+%  draw fullcircle scaled 2cm;
+%  dotlabel.bot(btex\TeX etex, origin);
+%  dotlabel.rt(btex 루아 etex, dir 45*1cm);
+%  endfig;
+%\end{mplibcode}
+%  \end{figure}
+%\end{frame}
 
 %%
 \section{오늘의 환율}
