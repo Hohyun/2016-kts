@@ -157,7 +157,7 @@
   dotlabel.bot(btex \TeX etex, origin);
   dotlabel.rt(btex 루아 etex, dir 45*1cm);
   endfig;
-end{mplibcode}
+\end{mplibcode}
 \end{verbatim}
 \begin{mplibcode}
   beginfig(1);
@@ -200,7 +200,7 @@ end{mplibcode}
 \end{luacode*}
 
 \begin{frame}{삼각 함수표}
-  \medskip
+  \bigskip
   \centering\small\divide\columnsep by 2
   \begin{tabular}{rcccc}
     \hline
@@ -261,18 +261,27 @@ end{mplibcode}
   \luadirect{print_LorAttrWithEulerMethod(#2,#3,[[#1]])}}
 
 \begin{frame}{로렌즈 끌개}
-  \centering
-  \pgfplotsset{width=.7\textwidth}
-  \begin{tikzpicture}
-    \begin{axis}
-      \addLUADEDplot[color=red,smooth]{0.02}{1000};
-      \addLUADEDplot[color=green,smooth]{0.02}{1000};
-      \addLUADEDplot[color=blue,smooth]{0.02}{1000};
-      \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
-      \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
-      \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
-    \end{axis}
-  \end{tikzpicture}
+  \begin{minipage}[c][1.0\height][c]{.6\textwidth}
+    \pgfplotsset{width=\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}
+        \addLUADEDplot[color=red,smooth]{0.02}{1000};
+        \addLUADEDplot[color=green,smooth]{0.02}{1000};
+        \addLUADEDplot[color=blue,smooth]{0.02}{1000};
+        \addLUADEDplot[color=cyan,smooth]{0.02}{1000};
+        \addLUADEDplot[color=magenta,smooth]{0.02}{1000};
+        \addLUADEDplot[color=yellow,smooth]{0.02}{1000};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}%
+  \begin{minipage}[c][1.0\height][c]{.4\textwidth}
+    \small
+    \begin{align*}
+      x'(t) &= \sigma (y(t)-x(t)), \\
+      y'(t) &= -x(t) z(t) + \rho x(t) - y(t), \\
+      z'(t) &= x(t) y(t) - \beta z(t).
+    \end{align*}
+  \end{minipage}
 \end{frame}
 
 %%
