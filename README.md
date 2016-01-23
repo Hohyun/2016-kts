@@ -12,7 +12,8 @@ luajitlatex
 
 편의를 위해서 아래와 같은 단축 명령어를 만든다.
 
-```
+```bash
+
   alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 ```
 
@@ -25,7 +26,8 @@ https://github.com/sjnam/luagmp.git의
 
 파일이 필요하다.
 
-```
+```bash
+
 kpsewhich -show-path=lua | tr ':' '\n' | sort
 ```
 
