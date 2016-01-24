@@ -84,13 +84,16 @@
 %
 \begin{frame}{\luatex}
   \begin{itemize}
-  \item \luatex 은 Lua 언어를 내장한 \hologo{pdfTeX}의 확장판이다.
-  \item \TeX\ 고유의 기능을 유지하고, Lua를 통하여 \TeX\ 내부의 깊은 부분, 엔진도
+  \item \luatex 은 Lua 스크립트 엔진을 내장한 \hologo{pdfTeX}의 확장판이다.
+  \item Lua를 통하여 매크로만으로는 한계가 있던 \TeX\ 내부의 깊은 곳도
     건드릴 수 있다.
+  \item \TeX 의 기능을 확장하는데 더 이상 무거운 프로그래밍은 필요없다.
+    Lua 스크립트로 손 쉽게 가능하다.
   \item 다양한 Lua 라이브러리를 제공,
     \href{http://ftp.ktug.org/tex-archive/systems/doc/luatex/luatexref-t.pdf}%
     {\luatex\ Reference}
-  %\item \texttt{mplib} 같은 새로운 기능도 추가.
+  \item \hologo{METAPOST}를 라이브러리화 한 자매 프로젝트 \texttt{mplib}으로
+    \TeX 에 그래픽 엔진도 심었다.
   \item 현재 버전, {\texttt{\small beta-0.80.0 (TeX Live 2015) (rev 5238)}}
   \end{itemize}
 \end{frame}
@@ -101,7 +104,7 @@
   \begin{alertblock}{\ \luatex 의 전형적인 사용례}
     \begin{itemize}
     \item \href{https://github.com/dohyunkim/luatexko}{\luatexko}
-    \item \href{https://github.com/lualatex/luamplib}{luamplib 패키지}
+    \item \href{https://github.com/lualatex/luamplib}{luamplib}
     \end{itemize}
   \end{alertblock}
   \begin{exampleblock}{\ \luatex\ 관련 필독서}
