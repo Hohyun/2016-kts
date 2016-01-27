@@ -2,6 +2,7 @@
 
 \documentclass[a4paper]{article}
 
+\usepackage{color}
 \usepackage{luacode}
 \usepackage{booktabs}
 \usepackage[yyyymmdd]{datetime}
@@ -60,6 +61,7 @@
     \luaexec{
       local fx = fixer(\luastring{\mydate}, \code)
       for k, v in pairs(fx.rates) do
+         if k == "KRW" then print("\\color{red}") end
          print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")
       end
     }
