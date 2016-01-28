@@ -43,11 +43,12 @@
 
 %%%
 %% 이 부분을 수정. 
-\newcommand\mydate{\today} % \today 또는 1999년 이후 "yyyy-mm-dd" 
-\newcommand\code{\luastring{USD}} % ISO 4217 code: KRW, EUR, USD, ...
+\ifx\mydate\undefined \newcommand\mydate{\today}\fi % \today 또는 1999년 이후 "yyyy-mm-dd" 
+\ifx\code\undefined \newcommand\code{\luastring{USD}}\fi % ISO 4217 code: KRW, EUR, USD, ...
 %%%
 
 \thispagestyle{empty}
+
 \begin{center}
   {\Large \country{\code, true} Foreign Exchange Refernce Rates}\\
   \medskip
