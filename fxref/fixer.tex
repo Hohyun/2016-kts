@@ -42,15 +42,17 @@
 \begin{document}
 
 %%%
-%% 이 부분을 수정. 
-\ifx\mydate\undefined \newcommand\mydate{\today}\fi % \today 또는 1999년 이후 "yyyy-mm-dd" 
-\ifx\code\undefined \newcommand\code{\luastring{USD}}\fi % ISO 4217 code: KRW, EUR, USD, ...
+%% 이 부분을 수정.
+% \today 또는 1999년 이후 "yyyy-mm-dd" 
+\ifx\mydate\undefined \newcommand\mydate{\today}\fi
+% ISO 4217 code: KRW, EUR, USD, ...
+\ifx\code\undefined \newcommand\code{USD}\fi 
 %%%
 
 \thispagestyle{empty}
 
 \begin{center}
-  {\Large \country{\code, true} Foreign Exchange Refernce Rates}\\
+  {\Large \country{"\code", true} Foreign Exchange Refernce Rates}\\
   \medskip
   \mydate\\
   \bigskip
@@ -60,7 +62,7 @@
     & \textbf{\sffamily Spot}\\
     \midrule
     \luaexec{
-      local fx = fixer(\luastring{\mydate}, \code)
+      local fx = fixer(\luastring{\mydate}, \luastring{\code})
       for k, v in pairs(fx.rates) do
          if k == "KRW" then print("\\color{red}") end
          print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")
