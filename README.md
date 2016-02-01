@@ -16,20 +16,3 @@ luajitlatex
 
   alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 ```
-
-jangna2016.pdf
---------------
-pdf 파일을 만들기 위해서는 https://github.com/sjnam/luagmp 의
-
-* luagmp.lua
-* alphametics.lua
-
-파일이 필요하다.
-위의 두 파일을 컴파일하고자 하는 텍파일과 같은 디렉토리에 두거나 아래 명령으로
-나오는 디렉토리들 중 맘에 드는 곳에 두어도 된다.
-
-```bash
-
-kpsewhich -show-path=lua | tr ':' '\n' | sort
-```
-
