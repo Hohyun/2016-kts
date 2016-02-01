@@ -46,13 +46,13 @@
 % \today 또는 1999년 이후 "yyyy-mm-dd" 
 \ifx\mydate\undefined \newcommand\mydate{\today}\fi
 % ISO 4217 code: KRW, EUR, USD, ...
-\ifx\code\undefined \newcommand\code{USD}\fi 
+\ifx\base\undefined \newcommand\base{EUR}\fi 
 %%%
 
 \thispagestyle{empty}
 
 \begin{center}
-  {\Large \country{\luastring{\code}, true} Foreign Exchange Refernce Rates}\\
+  {\Large \country{\luastring{\base}, true} Foreign Exchange Refernce Rates}\\
   \medskip
   \mydate\\
   \bigskip
@@ -62,7 +62,7 @@
     & \textbf{\sffamily Spot}\\
     \midrule
     \luaexec{
-      local fx = fixer(\luastring{\mydate}, \luastring{\code})
+      local fx = fixer(\luastring{\mydate}, \luastring{\base})
       for k, v in pairs(fx.rates) do
          if k == "KRW" then print("\\color{red}") end
          print("{\\sffamily "..k.."} & "..country(k).." & "..v.."\\\\")

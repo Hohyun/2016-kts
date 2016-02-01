@@ -1,3 +1,5 @@
+%http://www.cs.utsa.edu/~wagner/knuth/fasc2b.pdf
+
 \documentclass[a4paper]{article}
 
 \usepackage{mathtools,booktabs}
@@ -5,7 +7,7 @@
 \directlua{dofile(kpse.find_file("alphapuzzle.lua"))}
 
 \newcommand{\alphametics}[2][v]{%
-  \directlua{puzzle('#1','#2')}}
+  \directlua{puzzle('#1','#2')}\vspace{5mm}}
 
 \begin{document}
 
